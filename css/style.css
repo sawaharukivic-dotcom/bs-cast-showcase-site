@@ -259,14 +259,49 @@ a { color: inherit; }
 .cta__badges a:hover { opacity: 0.8; }
 
 .site-foot {
+  margin-top: clamp(28px, 5vw, 44px);
   padding: 28px 20px 36px;
+  border-top: 1px solid var(--line);
   text-align: center;
   color: var(--text-sub);
+}
+.site-foot__nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-bottom: 16px;
+}
+.site-foot__nav a {
+  font-family: var(--font-en);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.site-foot__nav a:hover { color: var(--magenta); }
+.site-foot__legal {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-bottom: 18px;
+}
+.site-foot__legal a {
+  font-size: 11px;
+  color: var(--text-sub);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.site-foot__legal a:hover { color: var(--text); }
+.site-foot p {
+  margin: 0;
   font-family: var(--font-en);
   font-size: 12px;
   letter-spacing: 0.18em;
 }
-.site-foot p { margin: 0; }
 
 .empty-note { text-align: center; color: var(--text-sub); padding: 40px 0; }
 
