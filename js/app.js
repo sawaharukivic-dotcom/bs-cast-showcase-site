@@ -43,18 +43,22 @@
     try { window.parent.postMessage(msg, "*"); } catch (e) { /* sandbox等で失敗しても無視 */ }
   }
 
-  var heightRaf = 0;
+  var lastPostedHeight = 0;
   var wantParentScroll = false; // ビュー切替直後は「高さ通知→スクロール通知」の順で送る
   function postHeight() {
-    if (!embedded || heightRaf) return;
-    heightRaf = window.requestAnimationFrame(function () {
-      heightRaf = 0;
-      postToParent({ type: "cast-showcase:height", height: document.documentElement.scrollHeight });
-      if (wantParentScroll) {
-        wantParentScroll = false;
-        postToParent({ type: "cast-showcase:scroll" });
-      }
-    });
+    if (!embedded) return;
+    // scrollHeightはiframe自身の高さより縮まない（伸びる一方になる）ため、
+    // コンテンツ実寸 = bodyのboundingRectで同期計測する
+    // （rAF経由にするとバックグラウンドや省電力時に発火せず通知が止まるため使わない）
+    var height = Math.ceil(document.body.getBoundingClientRect().height);
+    if (height > 0 && height !== lastPostedHeight) {
+      lastPostedHeight = height;
+      postToParent({ type: "cast-showcase:height", height: height });
+    }
+    if (wantParentScroll) {
+      wantParentScroll = false;
+      postToParent({ type: "cast-showcase:scroll" });
+    }
   }
   if ("ResizeObserver" in window) new ResizeObserver(postHeight).observe(document.body);
   window.addEventListener("load", postHeight);
@@ -73,6 +77,9 @@
       toEl.classList.add("view-enter");
       wantParentScroll = true; // 高さ反映後に親ページをiframe先頭へ
       postHeight();
+      // 登場アニメ完了後と画像読み込み後の高さ変化を取りこぼさないよう再送
+      window.setTimeout(postHeight, 400);
+      window.setTimeout(postHeight, 1000);
     };
     if (!fromEl || fromEl.hidden || reducedMotion()) {
       run();
@@ -487,8 +494,12 @@
   });
 
   // 起動: 一覧とナビを描画し、?id= 付きなら最初から個別を表示
+  // （直開き時は一覧の退場アニメを挟まず即時に個別へ切り替える）
   renderList();
   buildCastNav();
   var initialId = new URLSearchParams(location.search).get("id");
-  if (initialId != null) showDetail(initialId, false);
+  if (initialId != null && S.findCast(initialId)) {
+    listView.hidden = true;
+    showDetail(initialId, false);
+  }
 })();
