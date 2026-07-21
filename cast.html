@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>キャスト紹介 | BackStage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/cast.css" />
+</head>
+<body class="cast-page">
+  <nav class="topbar">
+    <a class="topbar__back" href="./index.html" id="backLink">← 一覧にもどる</a>
+  </nav>
+
+  <main class="profile" id="profile">
+    <!-- cast.js が casts-data.js から生成 -->
+    <noscript><p class="empty-note">プロフィールの表示には JavaScript を有効にしてください。</p></noscript>
+  </main>
+
+  <section class="cta">
+    <p class="cta__text" id="ctaText">アプリで会いに行こう</p>
+    <div class="cta__badges">
+      <a href="https://apps.apple.com/jp/app/id6443913743" target="_blank" rel="noopener"><img src="./assets/badge-app-store.svg" alt="App Storeでダウンロード" height="48" /></a>
+      <a href="https://play.google.com/store/apps/details?id=jp.vic_inc.app.back_stage" target="_blank" rel="noopener"><img src="./assets/badge-google-play.png" alt="Google Playで手に入れよう" height="48" /></a>
+    </div>
+  </section>
+
+  <nav class="pager" id="pager"></nav>
+
+  <footer class="site-foot">
+    <p>© BackStage</p>
+  </footer>
+
+  <script src="./casts-data.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="./js/cast.js"></script>
+</body>
+</html>

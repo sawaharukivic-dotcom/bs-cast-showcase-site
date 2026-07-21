@@ -1,0 +1,292 @@
+/* =============================================================
+ * CastShowcase 共通スタイル + 一覧ページ
+ * デザイントークン: BackStageブランド準拠のダークネオン
+ *   背景ほぼ黒(#0b0a10) × ネオングラデ(マゼンタ→紫→青) × 斜めストライプ
+ *   ランク帯 = カードの大きさで序列を表現（GOLD大→BRONZE小）
+ * ============================================================= */
+:root {
+  --bg: #0b0a10;
+  --surface: #16141f;
+  --surface-2: #1e1b2a;
+  --line: #2a2638;
+  --text: #f5f3f7;
+  --text-sub: #9b95a8;
+  --magenta: #ff2d78;
+  --violet: #8b5cf6;
+  --blue: #38bdf8;
+  --grad-neon: linear-gradient(100deg, var(--magenta), var(--violet) 55%, var(--blue));
+
+  /* ランク色（プレート・グロー・ストライプに使用） */
+  --gold-1: #f8e8b0;   --gold-2: #f0c530;   --gold-3: #9a6b06;
+  --silver-1: #f1f5f9; --silver-2: #cbd5e1; --silver-3: #64748b;
+  --bronze-1: #f3c9a0; --bronze-2: #d08a4e; --bronze-3: #7c4a1e;
+
+  --radius: 20px;
+  --font-en: "Outfit", sans-serif;
+  --font-ja: "Noto Sans JP", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ja);
+  font-size: 15px;
+  line-height: 1.8;
+}
+img { max-width: 100%; }
+a { color: inherit; }
+
+/* 背景: ごく薄いネオンの残光（上部）*/
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 40% at 20% -10%, rgba(255, 45, 120, 0.14), transparent 60%),
+    radial-gradient(50% 35% at 85% -5%, rgba(56, 189, 248, 0.12), transparent 60%);
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+
+/* ---------- ヒーロー ---------- */
+.hero {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: clamp(36px, 7vw, 72px) 20px 8px;
+  text-align: center;
+}
+.hero__eyebrow {
+  margin: 0 0 6px;
+  font-family: var(--font-en);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.42em;
+  color: var(--text-sub);
+  text-transform: uppercase;
+}
+.hero__title { margin: 0; }
+.hero__en {
+  display: block;
+  font-family: var(--font-en);
+  font-weight: 800;
+  font-size: clamp(28px, 9.5vw, 74px);
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  background: var(--grad-neon);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero__ja {
+  display: block;
+  margin-top: 10px;
+  font-weight: 900;
+  font-size: clamp(15px, 2.6vw, 20px);
+  letter-spacing: 0.3em;
+}
+.hero__lead {
+  margin: 18px auto 0;
+  max-width: 560px;
+  color: var(--text-sub);
+  font-size: clamp(13px, 2.2vw, 15px);
+}
+.hero__month {
+  margin: 6px 0 0;
+  font-family: var(--font-en);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--text-sub);
+}
+
+/* ---------- ランク帯セクション ---------- */
+.tiers {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 12px 20px 24px;
+}
+.tier { margin-top: clamp(32px, 6vw, 56px); }
+
+/* 帯見出し: ランク色の斜めストライプ（ブランドOGのモチーフ） */
+.tier__head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.tier__label { flex: none; }
+.tier__en {
+  display: block;
+  font-family: var(--font-en);
+  font-weight: 800;
+  font-size: clamp(26px, 5vw, 40px);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  background: linear-gradient(160deg, var(--rank-1), var(--rank-2) 60%, var(--rank-3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.tier__count {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--text-sub);
+}
+.tier__stripes {
+  flex: 1;
+  height: 14px;
+  border-radius: 999px;
+  background: repeating-linear-gradient(
+    -55deg,
+    var(--rank-2) 0 3px,
+    transparent 3px 9px
+  );
+  opacity: 0.55;
+}
+
+/* ランク色の割り当て */
+.tier--GOLD   { --rank-1: var(--gold-1);   --rank-2: var(--gold-2);   --rank-3: var(--gold-3); }
+.tier--SILVER { --rank-1: var(--silver-1); --rank-2: var(--silver-2); --rank-3: var(--silver-3); }
+.tier--BRONZE { --rank-1: var(--bronze-1); --rank-2: var(--bronze-2); --rank-3: var(--bronze-3); }
+
+/* カードグリッド: 帯ごとに密度を変えて序列を表現 */
+.tier__grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+.tier--GOLD .tier__grid   { grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); }
+.tier--SILVER .tier__grid { grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); }
+.tier--BRONZE .tier__grid { grid-template-columns: repeat(auto-fill, minmax(min(170px, 45%), 1fr)); }
+
+/* ---------- キャストカード ---------- */
+.cast-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+  text-align: center;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.cast-card:hover,
+.cast-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--rank-2);
+  box-shadow: 0 6px 28px -8px color-mix(in srgb, var(--rank-2) 55%, transparent);
+}
+.cast-card:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.cast-card__avatar {
+  position: relative;
+  width: min(132px, 60%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--surface-2);
+  border: 2px solid color-mix(in srgb, var(--rank-2) 65%, transparent);
+}
+.tier--GOLD .cast-card__avatar { width: min(168px, 64%); }
+.cast-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* 画像なしフォールバック: ネオングラデ地に頭文字 */
+.cast-card__avatar[data-fallback]::after {
+  content: attr(data-fallback);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 34px;
+  color: #fff;
+  background: var(--grad-neon);
+}
+
+.cast-card__rank {
+  font-family: var(--font-en);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  padding: 3px 12px 3px 14px;
+  border-radius: 999px;
+  color: #0b0a10;
+  background: linear-gradient(160deg, var(--rank-1), var(--rank-2) 70%, var(--rank-3));
+}
+.cast-card__name {
+  margin: 0;
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 1.35;
+}
+.tier--BRONZE .cast-card__name { font-size: 15px; }
+.cast-card__reading {
+  margin: -6px 0 0;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--text-sub);
+}
+.cast-card__catch {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--text-sub);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- CTA・フッター ---------- */
+.cta {
+  max-width: 1080px;
+  margin: clamp(40px, 8vw, 72px) auto 0;
+  padding: 28px 20px;
+  text-align: center;
+}
+.cta__text { margin: 0 0 16px; font-weight: 700; letter-spacing: 0.06em; }
+.cta__badges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.cta__badges img { height: 48px; width: auto; display: block; }
+.cta__badges a { transition: opacity 0.2s ease; }
+.cta__badges a:hover { opacity: 0.8; }
+
+.site-foot {
+  padding: 28px 20px 36px;
+  text-align: center;
+  color: var(--text-sub);
+  font-family: var(--font-en);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+}
+.site-foot p { margin: 0; }
+
+.empty-note { text-align: center; color: var(--text-sub); padding: 40px 0; }
+
+/* ---------- スクロール登場（reveal） ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .cast-card { transition: none; }
+}
