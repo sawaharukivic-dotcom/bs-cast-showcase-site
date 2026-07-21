@@ -39,6 +39,11 @@ body {
 img { max-width: 100%; }
 a { color: inherit; }
 
+/* STUDIO等のiframe埋め込み時は背景を透過し、親ページの背景を活かす
+   （<head>のインラインスクリプトが self!==top のとき html に .is-embedded を付与） */
+html.is-embedded body { background: transparent; }
+html.is-embedded body::before { display: none; }
+
 /* 背景: ごく薄いネオンの残光（上部）*/
 body::before {
   content: "";
