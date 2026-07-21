@@ -31,6 +31,29 @@
     return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
 
+  // ---------- 親ページ連携（STUDIO埋め込みの自動リサイズ・スクロール） ----------
+  // iframe内部スクロールだと親ページが一切スクロールせず、STUDIO側の
+  // 「スクロールでヘッダーを隠す」等が動かない。そこで中身の高さを親に通知して
+  // iframeごと伸ばし、スクロールを親ページに返す（対応スニペット側で受信）。
+  var embedded = false;
+  try { embedded = window.self !== window.top; } catch (e) { embedded = true; }
+
+  function postToParent(msg) {
+    if (!embedded) return;
+    try { window.parent.postMessage(msg, "*"); } catch (e) { /* sandbox等で失敗しても無視 */ }
+  }
+
+  var heightRaf = 0;
+  function postHeight() {
+    if (!embedded || heightRaf) return;
+    heightRaf = window.requestAnimationFrame(function () {
+      heightRaf = 0;
+      postToParent({ type: "cast-showcase:height", height: document.documentElement.scrollHeight });
+    });
+  }
+  if ("ResizeObserver" in window) new ResizeObserver(postHeight).observe(document.body);
+  window.addEventListener("load", postHeight);
+
   // fromEl を退場させてから apply()（描画・表示切替・スクロール）を実行し、toEl を登場させる
   function swapViews(fromEl, toEl, apply) {
     var run = function () {
@@ -43,6 +66,8 @@
       toEl.classList.remove("view-enter");
       void toEl.offsetWidth; // 同じビューに再入場してもアニメが再生されるようreflow
       toEl.classList.add("view-enter");
+      postHeight();
+      postToParent({ type: "cast-showcase:scroll" }); // 親ページをiframe先頭へ
     };
     if (!fromEl || fromEl.hidden || reducedMotion()) {
       run();
@@ -401,10 +426,22 @@
     var movie = buildMovie(cast);
     if (movie) detailView.appendChild(movie);
 
-    // アプリ導線
+    // アプリ導線: プロフィールURL（ディープリンク）があれば1ボタン、無ければストアバッジ
     var cta = S.el("section", "cta");
-    cta.appendChild(S.el("p", "cta__text", cast.name + " にアプリで会いに行こう"));
-    cta.appendChild(storeBadges());
+    var profileUrl = S.safeUrl(cast.profile_url);
+    if (profileUrl) {
+      var meet = document.createElement("a");
+      meet.className = "btn-meet";
+      meet.href = profileUrl;
+      meet.target = "_blank";
+      meet.rel = "noopener";
+      meet.textContent = cast.name + " にアプリで会いに行く";
+      cta.appendChild(meet);
+      cta.appendChild(S.el("p", "cta__note", "アプリが起動します（未インストールの場合はストアが開きます）"));
+    } else {
+      cta.appendChild(S.el("p", "cta__text", cast.name + " にアプリで会いに行こう"));
+      cta.appendChild(storeBadges());
+    }
     detailView.appendChild(cta);
   }
 

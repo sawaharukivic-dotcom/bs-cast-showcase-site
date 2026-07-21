@@ -135,6 +135,7 @@
   align-items: center;
   /* vhはSTUDIO埋め込みiframeの高さに引きずられるため上限を固定 */
   min-height: clamp(420px, 62vh, 680px);
+  overflow: hidden; /* ウォーターマークのはみ出しをセクション内に閉じ込める */
 }
 .chara.rank-GOLD   { --rank-1: var(--gold-1);   --rank-2: var(--gold-2);   --rank-3: var(--gold-3); }
 .chara.rank-SILVER { --rank-1: var(--silver-1); --rank-2: var(--silver-2); --rank-3: var(--silver-3); }
@@ -251,10 +252,9 @@
   border-color: transparent;
 }
 @keyframes portrait-swap {
-  from { opacity: 0; transform: translateX(-10px); }
+  from { opacity: 0; transform: translateX(-14px); }
   to   { opacity: 1; transform: none; }
 }
-.chara__visual img.portrait.is-swap { animation: portrait-swap 0.35s ease both; }
 
 /* キャッチの縦書きデコ（明朝） */
 .chara__vertical {
@@ -408,6 +408,31 @@
 }
 .btn-x:hover { border-color: var(--blue); transform: translateY(-2px); }
 
+/* 「会いに行く」1ボタンCTA */
+.btn-meet {
+  display: inline-block;
+  padding: 16px 40px;
+  border-radius: 999px;
+  background: var(--grad-neon);
+  color: #fff;
+  font-weight: 900;
+  font-size: clamp(15px, 2.6vw, 18px);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  box-shadow: 0 8px 28px -8px rgba(255, 45, 120, 0.65);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-meet:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px -8px rgba(139, 92, 246, 0.8);
+}
+.cta__note {
+  margin: 12px 0 0;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-sub);
+}
+
 /* ---------- MOVIE セクション ---------- */
 .chara-movie {
   max-width: 760px;
@@ -554,6 +579,12 @@
 .view-enter .chara__data > *:nth-child(8) { animation-delay: 0.72s; }
 .view-enter .chara-movie      { animation: view-fade-up 0.6s ease 0.6s both; }
 .view-enter .cta              { animation: view-fade-up 0.6s ease 0.66s both; }
+
+/* 立ち絵切替アニメは登場アニメ(.view-enter)の指定より後に置いて優先させる */
+.chara__visual img.portrait.is-swap,
+.view-enter .chara__visual img.portrait.is-swap {
+  animation: portrait-swap 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
 /* 一覧ビューの登場 */
 .view-enter .hero { animation: view-fade-up 0.5s ease both; }

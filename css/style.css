@@ -29,6 +29,8 @@
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
+/* 巨大ウォーターマーク等による横スクロール（スマホのフリックずれ）を防ぐ */
+html, body { overflow-x: hidden; overflow-x: clip; }
 body {
   margin: 0;
   /* 背景は常に透過（STUDIO埋め込み先の背景を使う）。暗色背景に載せる前提のデザイン */

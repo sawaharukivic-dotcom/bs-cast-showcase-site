@@ -37,8 +37,9 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "aqz-KE-bpKQ",
-      "other_url": "https://back-stage.onelink.me/7z4p/2n9d4530",
-      "other_label": "BackStageプロフィール",
+      "other_url": "",
+      "other_label": "",
+      "profile_url": "https://back-stage.onelink.me/7z4p/2n9d4530",
       "birth_month": "8月",
       "call_category": "ドリーマー"
     },
@@ -58,6 +59,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "",
       "call_category": "フレンドリー"
     },
@@ -77,6 +79,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "10月",
       "call_category": "フレンドリー"
     },
@@ -96,6 +99,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "10月",
       "call_category": "ドリーマー"
     },
@@ -115,6 +119,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "3月",
       "call_category": "ドリーマー"
     },
@@ -134,6 +139,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "11月",
       "call_category": "ドリーマー"
     },
@@ -153,6 +159,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "",
       "call_category": "ドリーマー"
     },
@@ -172,6 +179,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "1月",
       "call_category": "ドリーマー"
     },
@@ -191,6 +199,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "3月",
       "call_category": "ドリーマー"
     },
@@ -210,6 +219,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "12月",
       "call_category": "フレンドリー"
     },
@@ -229,6 +239,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "3月",
       "call_category": "フレンドリー"
     },
@@ -248,6 +259,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "",
       "call_category": ""
     },
@@ -267,6 +279,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "9月",
       "call_category": "フレンドリー"
     },
@@ -286,6 +299,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "11月",
       "call_category": "ドリーマー"
     },
@@ -305,6 +319,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "12月",
       "call_category": "ドリーマー"
     },
@@ -324,6 +339,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "12月",
       "call_category": "フレンドリー"
     },
@@ -343,6 +359,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "",
       "call_category": "ドリーマー"
     },
@@ -362,6 +379,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "10月",
       "call_category": "ドキドキ"
     },
@@ -381,6 +399,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "8月",
       "call_category": "ドリーマー"
     },
@@ -400,6 +419,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "2月",
       "call_category": "ドリーマー"
     },
@@ -419,6 +439,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "",
       "call_category": "ドリーマー"
     },
@@ -438,6 +459,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "11月",
       "call_category": "フレンドリー"
     },
@@ -457,6 +479,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "2月",
       "call_category": "フレンドリー"
     },
@@ -476,6 +499,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "2月",
       "call_category": "フレンドリー"
     },
@@ -495,6 +519,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "5月",
       "call_category": "ドリーマー"
     },
@@ -514,6 +539,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "2月",
       "call_category": "フレンドリー"
     },
@@ -533,6 +559,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "4月",
       "call_category": "ドリーマー"
     },
@@ -552,6 +579,7 @@ window.SHOWCASE = {
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
+      "profile_url": "",
       "birth_month": "3月",
       "call_category": "ドリーマー"
     }
