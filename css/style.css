@@ -31,16 +31,6 @@
 html { -webkit-text-size-adjust: 100%; }
 /* 巨大ウォーターマーク等による横スクロール（スマホのフリックずれ）を防ぐ */
 html, body { overflow-x: hidden; overflow-x: clip; }
-
-/* スクロール復帰用の不可視アンカー */
-#topAnchor {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 1px;
-  outline: none;
-}
 body {
   margin: 0;
   /* 背景は常に透過（STUDIO埋め込み先の背景を使う）。暗色背景に載せる前提のデザイン */

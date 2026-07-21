@@ -31,54 +31,12 @@
     return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
 
-  // ---------- 親ページ連携（STUDIO埋め込みの自動リサイズ・スクロール） ----------
-  // iframe内部スクロールだと親ページが一切スクロールせず、STUDIO側の
-  // 「スクロールでヘッダーを隠す」等が動かない。そこで中身の高さを親に通知して
-  // iframeごと伸ばし、スクロールを親ページに返す（対応スニペット側で受信）。
-  var embedded = false;
-  try { embedded = window.self !== window.top; } catch (e) { embedded = true; }
-
-  function postToParent(msg) {
-    if (!embedded) return;
-    try { window.parent.postMessage(msg, "*"); } catch (e) { /* sandbox等で失敗しても無視 */ }
-  }
-
-  var lastPostedHeight = 0;
-  var wantParentScroll = false; // ビュー切替直後は「高さ通知→スクロール通知」の順で送る
-  function postHeight() {
-    if (!embedded) return;
-    // scrollHeightはiframe自身の高さより縮まない（伸びる一方になる）ため、
-    // コンテンツ実寸 = bodyのboundingRectで同期計測する
-    // （rAF経由にするとバックグラウンドや省電力時に発火せず通知が止まるため使わない）
-    var height = Math.ceil(document.body.getBoundingClientRect().height);
-    if (height > 0 && height !== lastPostedHeight) {
-      lastPostedHeight = height;
-      postToParent({ type: "cast-showcase:height", height: height });
-    }
-    if (wantParentScroll) {
-      wantParentScroll = false;
-      postToParent({ type: "cast-showcase:scroll" });
-    }
-  }
-  if ("ResizeObserver" in window) new ResizeObserver(postHeight).observe(document.body);
-  window.addEventListener("load", postHeight);
-
-  // 親ページ(STUDIO)をiframe先頭まで戻す。sandboxの制約で単一の手段では届かない
-  // 環境があるため、届く可能性のある手段をすべて重ねる（多重に効いても結果は同じ位置）
-  function scrollParentToTop() {
-    // 1) scrollIntoView（同一オリジン連鎖なら親まで伝播）
-    try { document.body.scrollIntoView({ block: "start" }); } catch (e) {}
-    // 2) focus移動（クロスオリジンでも祖先ビューポートが追従する数少ない手段）
-    var anchor = document.getElementById("topAnchor");
-    if (anchor) {
-      try {
-        anchor.focus({ preventScroll: false });
-        anchor.blur();
-      } catch (e) {}
-    }
-    // 3) 対応スニペットへの通知（wrapperがSTUDIOと同一オリジンなら最上位を直接スクロール）
-    postToParent({ type: "cast-showcase:scroll" });
-  }
+  // 【スクロール方式の経緯】かつて「中身の高さを親に通知してiframeごと伸ばし、
+  // スクロールを親ページに返す」自動リサイズ方式を試したが、STUDIOのsandbox
+  // 環境（特にiOS）ではクロスオリジン制限により切替時の親スクロール復帰が
+  // 一切効かないことが実機で確定したため、iframe内部スクロール方式に戻した。
+  // （内部スクロールなら window.scrollTo で位置制御が完全に効く。
+  //   代償としてSTUDIO側のスクロール連動ヘッダーはこのページでは動かない）
 
   // fromEl を退場させてから apply()（描画・表示切替・スクロール）を実行し、toEl を登場させる
   function swapViews(fromEl, toEl, apply) {
@@ -92,11 +50,6 @@
       toEl.classList.remove("view-enter");
       void toEl.offsetWidth; // 同じビューに再入場してもアニメが再生されるようreflow
       toEl.classList.add("view-enter");
-      wantParentScroll = true; // 高さ反映後に親ページをiframe先頭へ
-      postHeight();
-      // 登場アニメ完了後と画像読み込み後の高さ変化を取りこぼさないよう再送
-      window.setTimeout(postHeight, 400);
-      window.setTimeout(postHeight, 1000);
     };
     if (!fromEl || fromEl.hidden || reducedMotion()) {
       run();
@@ -490,7 +443,6 @@
       document.body.classList.add("cast-page");
       document.title = found.cast.name + " | BackStage ランク入りキャスト";
       window.scrollTo(0, 0);
-      if (embedded) scrollParentToTop();
     });
     if (pushHistory) push(id);
   }
@@ -503,7 +455,6 @@
       document.body.classList.remove("cast-page");
       document.title = "ランク入りキャスト | BackStage";
       window.scrollTo(0, listScrollY);
-      if (embedded) scrollParentToTop();
     });
     if (pushHistory) push(null);
   }
