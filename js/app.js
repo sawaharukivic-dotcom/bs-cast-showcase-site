@@ -305,25 +305,32 @@
     chara.appendChild(watermark);
 
     // ビジュアル（立ち絵（複数なら衣装切替タブ付き） > アイコン > 頭文字）
+    // 9-nine方式: 全立ち絵を重ねて置き、縦グラデーションマスクのスライドでクロスワイプ切替
     var visual = S.el("div", "chara__visual");
     var portraits = (cast.portraits && cast.portraits.length)
       ? cast.portraits
       : (cast.portrait ? [cast.portrait] : []);
     if (portraits.length) {
-      var portrait = document.createElement("img");
-      portrait.className = "portrait";
-      portrait.src = portraits[0];
-      portrait.alt = cast.name;
-      portrait.addEventListener("error", function () {
-        portrait.remove();
+      var stack = S.el("div", "chara__portraits");
+      var imgs = portraits.map(function (src, i) {
+        var img = document.createElement("img");
+        img.className = "portrait" + (i === 0 ? " is-current" : "");
+        img.src = src;
+        img.alt = i === 0 ? cast.name : "";
+        stack.appendChild(img);
+        return img;
+      });
+      // 1枚目（レイアウト基準）が壊れていたらアイコン大円へフォールバック
+      imgs[0].addEventListener("error", function () {
+        stack.remove();
         var brokenTabs = visual.querySelector(".chara__costumes");
         if (brokenTabs) brokenTabs.remove();
         visual.appendChild(avatar(cast, "avatar-lg"));
       });
-      visual.appendChild(portrait);
-      if (portraits.length > 1) {
+      visual.appendChild(stack);
+      if (imgs.length > 1) {
         var tabs = S.el("div", "chara__costumes");
-        portraits.forEach(function (src, i) {
+        imgs.forEach(function (img, i) {
           var tab = document.createElement("button");
           tab.type = "button";
           tab.className = "chara__costume" + (i === 0 ? " is-active" : "");
@@ -333,10 +340,7 @@
             if (tab.classList.contains("is-active")) return;
             tabs.querySelectorAll(".chara__costume").forEach(function (n) { n.classList.remove("is-active"); });
             tab.classList.add("is-active");
-            portrait.classList.remove("is-swap");
-            void portrait.offsetWidth; // 再生し直しのためのreflow
-            portrait.src = src;
-            portrait.classList.add("is-swap");
+            imgs.forEach(function (other, j) { other.classList.toggle("is-current", i === j); });
           });
           tabs.appendChild(tab);
         });

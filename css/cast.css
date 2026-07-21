@@ -193,11 +193,48 @@
   justify-content: center;
   align-items: flex-end;
 }
+/* 立ち絵スタック: 全衣装を重ねて置き、9-nine式の縦グラデマスクでクロスワイプ切替
+   マスクは高さ220%（黒45%/フェード10%/透明45%）。position 0 0=全表示 / 0 100%=全非表示 */
+.chara__portraits {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+}
 .chara__visual img.portrait {
   max-width: 100%;
   max-height: 640px;
   object-fit: contain;
+  opacity: 0;
+  -webkit-mask-image: linear-gradient(180deg, #000 45%, transparent 55%);
+  mask-image: linear-gradient(180deg, #000 45%, transparent 55%);
+  -webkit-mask-size: 100% 220%;
+  mask-size: 100% 220%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 0 100%;
+  mask-position: 0 100%;
+  filter: drop-shadow(0 0 0 transparent);
+  /* 9-nine実測に合わせる: マスク0.8s ease・影は0.3s遅れて追従 */
+  transition:
+    -webkit-mask-position 0.8s ease,
+    mask-position 0.8s ease,
+    opacity 0.8s ease 0.1s,
+    filter 0.8s ease 0.3s;
+}
+.chara__visual img.portrait:not(:first-child) {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+.chara__visual img.portrait.is-current {
+  opacity: 1;
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
   filter: drop-shadow(18px 14px 0 color-mix(in srgb, var(--rank-2) 20%, transparent));
+  z-index: 2;
 }
 .chara__visual .avatar-lg {
   width: min(300px, 78%);
@@ -250,10 +287,6 @@
   background: linear-gradient(160deg, var(--rank-1), var(--rank-2) 70%, var(--rank-3));
   color: #0b0a10;
   border-color: transparent;
-}
-@keyframes portrait-swap {
-  from { opacity: 0; transform: translateX(-14px); }
-  to   { opacity: 1; transform: none; }
 }
 
 /* キャッチの縦書きデコ（明朝） */
@@ -523,7 +556,8 @@
   .chara__watermark { font-size: clamp(80px, 24vw, 130px); }
   .chara__vertical { display: none; } /* モバイルは横書きの .chara__catch のみ */
   .chara__visual .avatar-lg { width: min(220px, 64%); box-shadow: 12px 10px 0 color-mix(in srgb, var(--rank-2) 20%, transparent); margin-bottom: 8px; }
-  .chara__visual img.portrait { max-height: 480px; filter: drop-shadow(12px 10px 0 color-mix(in srgb, var(--rank-2) 20%, transparent)); }
+  .chara__visual img.portrait { max-height: 480px; }
+  .chara__visual img.portrait.is-current { filter: drop-shadow(12px 10px 0 color-mix(in srgb, var(--rank-2) 20%, transparent)); }
   .chara__data { padding-right: 0; }
   .chara__specs > div { grid-template-columns: 6em 1fr; }
 }
@@ -564,7 +598,7 @@
 .view-enter .topbar           { animation: view-fade 0.5s ease both; }
 .view-enter .chara__frame     { animation: frame-in 0.9s ease 0.05s both; }
 .view-enter .chara__watermark { animation: view-fade 0.9s ease 0.1s both; }
-.view-enter .chara__visual img.portrait { animation: portrait-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both; }
+.view-enter .chara__visual img.portrait.is-current { animation: portrait-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both; }
 .view-enter .chara__visual .avatar-lg   { animation: view-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both; }
 .view-enter .chara__name::after { animation: line-draw 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both; }
 .view-enter .chara__vertical  { animation: view-fade-up 0.8s ease 0.6s both; }
@@ -580,12 +614,6 @@
 .view-enter .chara-movie      { animation: view-fade-up 0.6s ease 0.6s both; }
 .view-enter .cta              { animation: view-fade-up 0.6s ease 0.66s both; }
 
-/* 立ち絵切替アニメは登場アニメ(.view-enter)の指定より後に置いて優先させる */
-.chara__visual img.portrait.is-swap,
-.view-enter .chara__visual img.portrait.is-swap {
-  animation: portrait-swap 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
 /* 一覧ビューの登場 */
 .view-enter .hero { animation: view-fade-up 0.5s ease both; }
 .view-enter .tier { animation: view-fade-up 0.55s ease both; }
@@ -594,4 +622,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .view-leave, .view-enter * { animation: none !important; }
+  .chara__visual img.portrait { transition: none !important; }
 }
