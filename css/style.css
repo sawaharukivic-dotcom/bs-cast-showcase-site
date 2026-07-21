@@ -30,7 +30,8 @@
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  background: var(--bg);
+  /* 背景は常に透過（STUDIO埋め込み先の背景を使う）。暗色背景に載せる前提のデザイン */
+  background: transparent;
   color: var(--text);
   font-family: var(--font-ja);
   font-size: 15px;
@@ -39,23 +40,6 @@ body {
 img { max-width: 100%; }
 a { color: inherit; }
 
-/* STUDIO等のiframe埋め込み時は背景を透過し、親ページの背景を活かす
-   （<head>のインラインスクリプトが self!==top のとき html に .is-embedded を付与） */
-html.is-embedded body { background: transparent; }
-html.is-embedded body::before { display: none; }
-
-/* 背景: ごく薄いネオンの残光（上部）*/
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(60% 40% at 20% -10%, rgba(255, 45, 120, 0.14), transparent 60%),
-    radial-gradient(50% 35% at 85% -5%, rgba(56, 189, 248, 0.12), transparent 60%);
-  z-index: 0;
-}
-body > * { position: relative; z-index: 1; }
 
 /* ---------- ヒーロー ---------- */
 .hero {
