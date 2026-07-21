@@ -193,9 +193,10 @@
   justify-content: center;
   align-items: flex-end;
 }
-/* 立ち絵スタック: 全衣装を重ねて置き、切替時は「初回表示と同じリビール」
-   （clip-pathで左→右に開くportrait-reveal）を再生する。
-   前の衣装(.is-prev)は表示したまま下に残し、リビール完了後にフェードアウト */
+/* 立ち絵スタック: 全衣装を重ねて置き、切替は「共有境界のワイプ」。
+   新しい衣装(.is-current)が左からclip-pathで現れるのと同時に、
+   前の衣装(.is-prev)が同じ境界・同じ速度で左から消えていく
+   （中間時点では左半分=新・右半分=旧が同時に見える） */
 .chara__portraits {
   position: relative;
   display: flex;
@@ -214,6 +215,8 @@
   opacity: 1;
   z-index: 1;
   filter: drop-shadow(18px 14px 0 color-mix(in srgb, var(--rank-2) 20%, transparent));
+  /* is-currentのリビール(0.8s/0.12s遅延)と同じタイミングで左から消える */
+  animation: portrait-conceal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
 }
 .chara__visual img.portrait:not(:first-child) {
   position: absolute;
@@ -226,8 +229,8 @@
   opacity: 1;
   filter: drop-shadow(18px 14px 0 color-mix(in srgb, var(--rank-2) 20%, transparent));
   z-index: 2;
-  /* is-currentが付くたびに初回と同じリビールを再生（.view-enter配下では下の指定が優先） */
-  animation: portrait-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  /* is-currentが付くたびに初回と同じリビールを再生（0.12s遅延は.view-enter側と揃える） */
+  animation: portrait-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
 }
 .chara__visual .avatar-lg {
   width: min(300px, 78%);
@@ -576,6 +579,11 @@
 @keyframes portrait-reveal {
   from { opacity: 0.3; clip-path: inset(0 100% 0 0); }
   to   { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+/* portrait-revealと同じ境界を左から進んで消える（衣装切替の旧側） */
+@keyframes portrait-conceal {
+  from { clip-path: inset(0 0 0 0); }
+  to   { clip-path: inset(0 0 0 100%); }
 }
 @keyframes line-draw {
   from { transform: scaleX(0); }
