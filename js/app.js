@@ -44,11 +44,16 @@
   }
 
   var heightRaf = 0;
+  var wantParentScroll = false; // ビュー切替直後は「高さ通知→スクロール通知」の順で送る
   function postHeight() {
     if (!embedded || heightRaf) return;
     heightRaf = window.requestAnimationFrame(function () {
       heightRaf = 0;
       postToParent({ type: "cast-showcase:height", height: document.documentElement.scrollHeight });
+      if (wantParentScroll) {
+        wantParentScroll = false;
+        postToParent({ type: "cast-showcase:scroll" });
+      }
     });
   }
   if ("ResizeObserver" in window) new ResizeObserver(postHeight).observe(document.body);
@@ -66,8 +71,8 @@
       toEl.classList.remove("view-enter");
       void toEl.offsetWidth; // 同じビューに再入場してもアニメが再生されるようreflow
       toEl.classList.add("view-enter");
+      wantParentScroll = true; // 高さ反映後に親ページをiframe先頭へ
       postHeight();
-      postToParent({ type: "cast-showcase:scroll" }); // 親ページをiframe先頭へ
     };
     if (!fromEl || fromEl.hidden || reducedMotion()) {
       run();
