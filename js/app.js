@@ -63,6 +63,23 @@
   if ("ResizeObserver" in window) new ResizeObserver(postHeight).observe(document.body);
   window.addEventListener("load", postHeight);
 
+  // 親ページ(STUDIO)をiframe先頭まで戻す。sandboxの制約で単一の手段では届かない
+  // 環境があるため、届く可能性のある手段をすべて重ねる（多重に効いても結果は同じ位置）
+  function scrollParentToTop() {
+    // 1) scrollIntoView（同一オリジン連鎖なら親まで伝播）
+    try { document.body.scrollIntoView({ block: "start" }); } catch (e) {}
+    // 2) focus移動（クロスオリジンでも祖先ビューポートが追従する数少ない手段）
+    var anchor = document.getElementById("topAnchor");
+    if (anchor) {
+      try {
+        anchor.focus({ preventScroll: false });
+        anchor.blur();
+      } catch (e) {}
+    }
+    // 3) 対応スニペットへの通知（wrapperがSTUDIOと同一オリジンなら最上位を直接スクロール）
+    postToParent({ type: "cast-showcase:scroll" });
+  }
+
   // fromEl を退場させてから apply()（描画・表示切替・スクロール）を実行し、toEl を登場させる
   function swapViews(fromEl, toEl, apply) {
     var run = function () {
@@ -473,9 +490,7 @@
       document.body.classList.add("cast-page");
       document.title = found.cast.name + " | BackStage ランク入りキャスト";
       window.scrollTo(0, 0);
-      // 埋め込み時: iframe内からのscrollIntoViewはsandbox入れ子を越えて
-      // 親ページ(STUDIO)まで伝播するため、スニペット側scriptに依存せず先頭へ戻せる
-      if (embedded) document.body.scrollIntoView({ block: "start" });
+      if (embedded) scrollParentToTop();
     });
     if (pushHistory) push(id);
   }
@@ -488,7 +503,7 @@
       document.body.classList.remove("cast-page");
       document.title = "ランク入りキャスト | BackStage";
       window.scrollTo(0, listScrollY);
-      if (embedded) document.body.scrollIntoView({ block: "start" });
+      if (embedded) scrollParentToTop();
     });
     if (pushHistory) push(null);
   }
