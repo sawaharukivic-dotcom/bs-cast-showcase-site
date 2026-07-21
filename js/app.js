@@ -218,9 +218,12 @@
       navItems[id].classList.toggle("is-current", on);
       if (on) {
         navItems[id].setAttribute("aria-current", "page");
-        navItems[id].scrollIntoView({
-          inline: "center",
-          block: "nearest",
+        // scrollIntoViewは親ページ(STUDIO)までスクロールが伝播してしまうため、
+        // バーのコンテナだけを手動で横スクロールして中央に寄せる
+        var item = navItems[id];
+        var left = item.offsetLeft - (castNavScroll.clientWidth - item.offsetWidth) / 2;
+        castNavScroll.scrollTo({
+          left: Math.max(0, left),
           behavior: reducedMotion() ? "auto" : "smooth",
         });
       } else {
@@ -470,6 +473,9 @@
       document.body.classList.add("cast-page");
       document.title = found.cast.name + " | BackStage ランク入りキャスト";
       window.scrollTo(0, 0);
+      // 埋め込み時: iframe内からのscrollIntoViewはsandbox入れ子を越えて
+      // 親ページ(STUDIO)まで伝播するため、スニペット側scriptに依存せず先頭へ戻せる
+      if (embedded) document.body.scrollIntoView({ block: "start" });
     });
     if (pushHistory) push(id);
   }
@@ -482,6 +488,7 @@
       document.body.classList.remove("cast-page");
       document.title = "ランク入りキャスト | BackStage";
       window.scrollTo(0, listScrollY);
+      if (embedded) document.body.scrollIntoView({ block: "start" });
     });
     if (pushHistory) push(null);
   }
