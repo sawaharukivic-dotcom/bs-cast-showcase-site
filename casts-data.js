@@ -10,11 +10,37 @@ window.SHOWCASE = {
       "name": "鹿鳴りあ",
       "name_reading": "ロクメリア",
       "rank": "GOLD",
-      "catch": "歌とガンダムが大好きなバンビ系VTuberの鹿鳴りあです！\n自己紹介動画を作成していただきました✨\nこれを機に沢山のことを知っていただけたら嬉しいです！",
-      "intro": "歌とガンダムが大好きなバンビ系VTuberの鹿鳴りあです！\n自己紹介動画を作成していただきました✨\nこれを機に沢山のことを知っていただけたら嬉しいです！",
+      "catch": "歌とガンダムが大好き、バンビ系VTuber。",
+      "intro": "歌とガンダムをこよなく愛するバンビ系VTuber。\n透きとおる歌声と、初めてでもすぐ打ち解けられるトークが持ち味。\nBackStageではGOLDクラスの実力派として、今日も1on1のステージに立つ。",
       "x_url": "https://x.com/69meeeeeee",
       "portrait": "",
-      "icon": "assets/172_icon.webp"
+      "portraits": [
+        "assets/172_KV01.webp",
+        "assets/172_KV02.webp"
+      ],
+      "icon": "assets/172_icon.webp",
+      "tags": [
+        "歌",
+        "ガンダム",
+        "アニメ",
+        "朝活",
+        "はじめてさん歓迎"
+      ],
+      "specs": [
+        {
+          "label": "好きなもの",
+          "value": "ガンプラ・カラオケ・いちご"
+        },
+        {
+          "label": "活動時間",
+          "value": "夜 22:00〜"
+        }
+      ],
+      "youtube_id": "aqz-KE-bpKQ",
+      "other_url": "https://back-stage.onelink.me/7z4p/2n9d4530",
+      "other_label": "BackStageプロフィール",
+      "birth_month": "8月",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 232,
@@ -25,7 +51,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/mitowakana",
       "portrait": "",
-      "icon": "assets/232_icon.webp"
+      "portraits": [],
+      "icon": "assets/232_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "",
+      "call_category": "フレンドリー"
     },
     {
       "cast_id": 205,
@@ -36,7 +70,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/MidokuLobha",
       "portrait": "",
-      "icon": "assets/205_icon.webp"
+      "portraits": [],
+      "icon": "assets/205_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "10月",
+      "call_category": "フレンドリー"
     },
     {
       "cast_id": 239,
@@ -47,7 +89,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/tenshitiyomu",
       "portrait": "",
-      "icon": "assets/239_icon.webp"
+      "portraits": [],
+      "icon": "assets/239_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "10月",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 241,
@@ -58,7 +108,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/TamakiYouBS",
       "portrait": "",
-      "icon": "assets/241_icon.webp"
+      "portraits": [],
+      "icon": "assets/241_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "3月",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 296,
@@ -69,7 +127,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/uta_wanUo_oU",
       "portrait": "",
-      "icon": "assets/296_icon.webp"
+      "portraits": [],
+      "icon": "assets/296_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "11月",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 392,
@@ -80,7 +146,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/KUMANO_moru",
       "portrait": "",
-      "icon": "assets/392_icon.webp"
+      "portraits": [],
+      "icon": "assets/392_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 407,
@@ -91,7 +165,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/riu_ttid",
       "portrait": "",
-      "icon": "assets/407_icon.webp"
+      "portraits": [],
+      "icon": "assets/407_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "1月",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 154,
@@ -102,7 +184,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/pochakk666",
       "portrait": "",
-      "icon": "assets/154_icon.webp"
+      "portraits": [],
+      "icon": "assets/154_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "3月",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 188,
@@ -113,7 +203,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/hinata_bsc",
       "portrait": "",
-      "icon": "assets/188_icon.webp"
+      "portraits": [],
+      "icon": "assets/188_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "12月",
+      "call_category": "フレンドリー"
     },
     {
       "cast_id": 227,
@@ -124,7 +222,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/hazime0501",
       "portrait": "",
-      "icon": "assets/227_icon.webp"
+      "portraits": [],
+      "icon": "assets/227_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "3月",
+      "call_category": "フレンドリー"
     },
     {
       "cast_id": 236,
@@ -135,7 +241,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/chouzetu_haochi",
       "portrait": "",
-      "icon": ""
+      "portraits": [],
+      "icon": "",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "",
+      "call_category": ""
     },
     {
       "cast_id": 303,
@@ -146,7 +260,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/BackStage_MznYk",
       "portrait": "",
-      "icon": "assets/303_icon.webp"
+      "portraits": [],
+      "icon": "assets/303_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "9月",
+      "call_category": "フレンドリー"
     },
     {
       "cast_id": 313,
@@ -157,7 +279,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/kuroshibaeila",
       "portrait": "",
-      "icon": "assets/313_icon.webp"
+      "portraits": [],
+      "icon": "assets/313_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "11月",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 319,
@@ -168,7 +298,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/MagicalGirl_PPP",
       "portrait": "",
-      "icon": "assets/319_icon.webp"
+      "portraits": [],
+      "icon": "assets/319_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "12月",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 322,
@@ -179,7 +317,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/Shino_K1219",
       "portrait": "",
-      "icon": "assets/322_icon.webp"
+      "portraits": [],
+      "icon": "assets/322_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "12月",
+      "call_category": "フレンドリー"
     },
     {
       "cast_id": 328,
@@ -190,7 +336,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/SayaGrace38",
       "portrait": "",
-      "icon": "assets/328_icon.webp"
+      "portraits": [],
+      "icon": "assets/328_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 364,
@@ -201,7 +355,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/Otonashi_Noa",
       "portrait": "",
-      "icon": "assets/364_icon.webp"
+      "portraits": [],
+      "icon": "assets/364_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "10月",
+      "call_category": "ドキドキ"
     },
     {
       "cast_id": 388,
@@ -212,7 +374,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/yumeno_teu",
       "portrait": "",
-      "icon": "assets/388_icon.webp"
+      "portraits": [],
+      "icon": "assets/388_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "8月",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 391,
@@ -223,7 +393,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/komukai_nanoka",
       "portrait": "",
-      "icon": "assets/391_icon.webp"
+      "portraits": [],
+      "icon": "assets/391_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "2月",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 400,
@@ -234,7 +412,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/ousakiharune",
       "portrait": "",
-      "icon": "assets/400_icon.webp"
+      "portraits": [],
+      "icon": "assets/400_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 414,
@@ -245,7 +431,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/tayutauchan",
       "portrait": "",
-      "icon": "assets/414_icon.webp"
+      "portraits": [],
+      "icon": "assets/414_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "11月",
+      "call_category": "フレンドリー"
     },
     {
       "cast_id": 416,
@@ -256,7 +450,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "",
       "portrait": "",
-      "icon": "assets/416_icon.webp"
+      "portraits": [],
+      "icon": "assets/416_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "2月",
+      "call_category": "フレンドリー"
     },
     {
       "cast_id": 439,
@@ -267,7 +469,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/hanyano21",
       "portrait": "",
-      "icon": "assets/439_icon.webp"
+      "portraits": [],
+      "icon": "assets/439_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "2月",
+      "call_category": "フレンドリー"
     },
     {
       "cast_id": 446,
@@ -278,7 +488,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/7_ko_s",
       "portrait": "",
-      "icon": "assets/446_icon.webp"
+      "portraits": [],
+      "icon": "assets/446_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "5月",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 501,
@@ -289,7 +507,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/amataxi4869",
       "portrait": "",
-      "icon": "assets/501_icon.webp"
+      "portraits": [],
+      "icon": "assets/501_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "2月",
+      "call_category": "フレンドリー"
     },
     {
       "cast_id": 506,
@@ -300,7 +526,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/mira_etoile_2",
       "portrait": "",
-      "icon": "assets/506_icon.webp"
+      "portraits": [],
+      "icon": "assets/506_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "4月",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 529,
@@ -311,7 +545,15 @@ window.SHOWCASE = {
       "intro": "",
       "x_url": "https://x.com/_koito_IRIAM",
       "portrait": "",
-      "icon": "assets/529_icon.webp"
+      "portraits": [],
+      "icon": "assets/529_icon.webp",
+      "tags": [],
+      "specs": [],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "birth_month": "3月",
+      "call_category": "ドリーマー"
     }
   ]
 };

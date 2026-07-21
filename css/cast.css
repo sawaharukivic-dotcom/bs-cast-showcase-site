@@ -1,13 +1,90 @@
 /* =============================================================
- * 個別キャストビュー（9-nineキャラページ風レイアウト＋登場アニメ）
- *   左: 大ビジュアル（ランク色のオフセットシャドウ）
- *   右: かな→名前(大)→ランク行→紹介文→リンク
- *   背景: ランク英字の巨大ウォーターマーク / キャッチの縦書き
+ * 個別キャストビュー（ギャルゲ風: 立ち絵主役＋罫線・明朝タイポグラフィ）
+ *   意匠の出典: creative/castrank.jpeg（金二重罫線・月桂樹CLASSバッジ・明朝体・
+ *   名前下ヘアライン）を既存ダークネオンの上に翻訳
+ *   構成: 上部キャスト切替ナビ（CloverDays風）＋ chara セクション＋MOVIE＋CTA
  * ============================================================= */
+
+/* ---------- 上部キャスト切替ナビ ---------- */
+.cast-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(11, 10, 16, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.cast-nav__scroll {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 10px 16px;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+}
+.cast-nav__scroll::-webkit-scrollbar { display: none; }
+.cast-nav__item {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  width: 56px;
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.cast-nav__item:hover { opacity: 1; }
+.cast-nav__item.rank-GOLD   { --rank-2: var(--gold-2); }
+.cast-nav__item.rank-SILVER { --rank-2: var(--silver-2); }
+.cast-nav__item.rank-BRONZE { --rank-2: var(--bronze-2); }
+.cast-nav__avatar {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--rank-2) 55%, transparent);
+  background: var(--surface-2);
+  display: block;
+}
+.cast-nav__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cast-nav__avatar[data-fallback]::after {
+  content: attr(data-fallback);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 16px;
+  color: #fff;
+  background: var(--grad-neon);
+}
+.cast-nav__name {
+  font-size: 9px;
+  color: var(--text-sub);
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.cast-nav__item.is-current {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+.cast-nav__item.is-current .cast-nav__avatar {
+  border: 2px solid var(--rank-2);
+  box-shadow: 0 0 10px -2px var(--rank-2);
+}
+.cast-nav__item.is-current .cast-nav__name { color: var(--text); font-weight: 700; }
+
+/* ---------- 戻る ---------- */
 .topbar {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 18px 20px 0;
+  padding: 14px 20px 0;
   position: relative;
   z-index: 2;
 }
@@ -30,47 +107,75 @@
   position: relative;
   max-width: 1080px;
   margin: 0 auto;
-  padding: clamp(24px, 4vw, 48px) 20px 8px;
+  padding: clamp(32px, 5vw, 60px) clamp(28px, 5vw, 64px) clamp(28px, 4vw, 48px);
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   gap: clamp(20px, 4vw, 48px);
   align-items: center;
-  min-height: 62vh;
+  /* vhはSTUDIO埋め込みiframeの高さに引きずられるため上限を固定 */
+  min-height: clamp(420px, 62vh, 680px);
 }
 .chara.rank-GOLD   { --rank-1: var(--gold-1);   --rank-2: var(--gold-2);   --rank-3: var(--gold-3); }
 .chara.rank-SILVER { --rank-1: var(--silver-1); --rank-2: var(--silver-2); --rank-3: var(--silver-3); }
 .chara.rank-BRONZE { --rank-1: var(--bronze-1); --rank-2: var(--bronze-2); --rank-3: var(--bronze-3); }
 
-/* ランク英字の巨大ウォーターマーク（9-nineの背景装飾テキストに相当） */
+/* 罫線フレーム: 外線＋内線の二重ヘアライン（castrank.jpegの額縁）。菱形は上下中央に */
+.chara__frame {
+  position: absolute;
+  inset: 14px 18px;
+  border: 1px solid color-mix(in srgb, var(--rank-2) 45%, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+.chara__frame::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid color-mix(in srgb, var(--rank-2) 22%, transparent);
+}
+.chara__frame::after,
+.chara__diamond {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: var(--rank-2);
+  transform: rotate(45deg);
+}
+.chara__frame::after { top: -4px; left: 50%; margin-left: -4px; }
+.chara__diamond--b { bottom: -4px; left: 50%; margin-left: -4px; display: block; }
+
+/* ランク英字の巨大ウォーターマーク */
 .chara__watermark {
   position: absolute;
-  top: 0;
-  left: -0.06em;
+  top: 6px;
+  left: 10px;
   font-family: var(--font-en);
   font-weight: 800;
-  font-size: clamp(90px, 18vw, 220px);
+  font-size: clamp(90px, 17vw, 210px);
   line-height: 1;
   letter-spacing: 0.04em;
   color: transparent;
-  -webkit-text-stroke: 1px color-mix(in srgb, var(--rank-2) 45%, transparent);
-  opacity: 0.35;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--rank-2) 40%, transparent);
+  opacity: 0.3;
   pointer-events: none;
   user-select: none;
   z-index: 0;
 }
 
-/* ビジュアル面: 立ち絵 or 大アイコン。ランク色のオフセットシャドウ（9-nineのキャラ影に相当） */
+/* ビジュアル: 立ち絵主役（ランク色オフセットシャドウ）。無ければ大円アイコン */
 .chara__visual {
   position: relative;
   z-index: 1;
   display: flex;
   justify-content: center;
+  align-items: flex-end;
 }
 .chara__visual img.portrait {
   max-width: 100%;
-  max-height: min(64vh, 560px);
+  max-height: 640px;
   object-fit: contain;
-  filter: drop-shadow(18px 18px 0 color-mix(in srgb, var(--rank-2) 22%, transparent));
+  filter: drop-shadow(18px 14px 0 color-mix(in srgb, var(--rank-2) 20%, transparent));
 }
 .chara__visual .avatar-lg {
   width: min(300px, 78%);
@@ -79,8 +184,9 @@
   overflow: hidden;
   border: 3px solid color-mix(in srgb, var(--rank-2) 65%, transparent);
   position: relative;
-  box-shadow: 18px 18px 0 color-mix(in srgb, var(--rank-2) 22%, transparent);
+  box-shadow: 16px 14px 0 color-mix(in srgb, var(--rank-2) 20%, transparent);
   background: var(--surface-2);
+  margin-bottom: 16px;
 }
 .chara__visual .avatar-lg img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .chara__visual .avatar-lg[data-fallback]::after {
@@ -95,78 +201,176 @@
   background: var(--grad-neon);
 }
 
-/* キャッチコピーの縦書き（9-nineの縦書きデコに相当。キャッチ未設定なら出さない） */
+/* 立ち絵の衣装切替タブ（9-nineのcostume-change相当） */
+.chara__costumes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+.chara__costume {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--rank-2) 55%, transparent);
+  background: var(--surface);
+  color: var(--text-sub);
+  font-family: var(--font-en);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.chara__costume:hover { transform: translateY(-2px); }
+.chara__costume.is-active {
+  background: linear-gradient(160deg, var(--rank-1), var(--rank-2) 70%, var(--rank-3));
+  color: #0b0a10;
+  border-color: transparent;
+}
+@keyframes portrait-swap {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: none; }
+}
+.chara__visual img.portrait.is-swap { animation: portrait-swap 0.35s ease both; }
+
+/* キャッチの縦書きデコ（明朝） */
 .chara__vertical {
   position: absolute;
-  right: 8px;
-  top: clamp(24px, 6vw, 64px);
+  right: clamp(26px, 4vw, 44px);
+  top: clamp(34px, 6vw, 72px);
   writing-mode: vertical-rl;
-  font-weight: 700;
-  font-size: clamp(13px, 1.8vw, 16px);
-  letter-spacing: 0.32em;
-  color: var(--text-sub);
-  max-height: 60vh;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(13px, 1.7vw, 16px);
+  letter-spacing: 0.34em;
+  color: color-mix(in srgb, var(--text-sub) 80%, var(--rank-2));
+  max-height: 460px;
   overflow: hidden;
   z-index: 0;
   margin: 0;
 }
 
-/* データ面 */
-.chara__data { position: relative; z-index: 1; min-width: 0; }
-.chara__name { margin: 0; }
-.chara__name .kana {
-  display: block;
-  font-size: 13px;
-  letter-spacing: 0.42em;
-  color: var(--text-sub);
-  margin-bottom: 6px;
-}
-.chara__name .kanji {
-  display: block;
-  font-weight: 900;
-  font-size: clamp(32px, 6vw, 52px);
-  line-height: 1.25;
-}
-.chara__rankline {
-  margin: 14px 0 0;
+/* ---------- データ面 ---------- */
+.chara__data { position: relative; z-index: 1; min-width: 0; padding-right: clamp(0px, 3vw, 40px); }
+
+/* 月桂樹CLASSバッジ（laurel.svgをmaskで左右に。色はランクグラデ） */
+.chara__class {
+  margin: 0 0 10px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.chara__rank {
-  display: inline-block;
-  font-family: var(--font-en);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  padding: 4px 14px 4px 16px;
-  border-radius: 999px;
-  color: #0b0a10;
+.chara__class::before,
+.chara__class::after {
+  content: "";
+  width: 20px;
+  height: 40px;
   background: linear-gradient(160deg, var(--rank-1), var(--rank-2) 70%, var(--rank-3));
+  -webkit-mask: url("../assets/laurel.svg") no-repeat center / contain;
+  mask: url("../assets/laurel.svg") no-repeat center / contain;
 }
-.chara__ranknote {
+.chara__class::after { transform: scaleX(-1); }
+.chara__class-text {
   font-family: var(--font-en);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: var(--text-sub);
-}
-.chara__catch {
-  margin: 18px 0 0;
   font-weight: 700;
-  font-size: clamp(16px, 3vw, 20px);
-  line-height: 1.7;
+  font-size: 13px;
+  letter-spacing: 0.34em;
+  background: linear-gradient(160deg, var(--rank-1), var(--rank-2) 70%, var(--rank-3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 名前: かな→明朝の大見出し。下にline-drawされるヘアライン */
+.chara__name { margin: 0; position: relative; padding-bottom: 14px; }
+.chara__name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--rank-2), color-mix(in srgb, var(--rank-2) 15%, transparent));
+  transform-origin: left;
+}
+.chara__name .kana {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.46em;
+  color: var(--text-sub);
+  margin-bottom: 8px;
+}
+.chara__name .kanji {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 54px);
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+}
+
+/* キャッチ（明朝・ネオングラデ） */
+.chara__catch {
+  margin: 16px 0 0;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(15px, 2.6vw, 19px);
+  line-height: 1.8;
   background: var(--grad-neon);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
+
+/* スペック表（行間ヘアライン・dtは明朝） */
+.chara__specs { margin: 18px 0 0; }
+.chara__specs > div {
+  display: grid;
+  grid-template-columns: 7em 1fr;
+  gap: 12px;
+  padding: 8px 2px;
+  border-bottom: 1px solid color-mix(in srgb, var(--rank-2) 22%, transparent);
+  align-items: baseline;
+}
+.chara__specs dt {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.24em;
+  color: var(--text-sub);
+}
+.chara__specs dd { margin: 0; font-size: 14px; }
+
+/* タグチップ */
+.chara__tags {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chara__tags li {
+  font-size: 12px;
+  color: var(--text-sub);
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+/* 紹介文 */
 .chara__detail {
   margin: 16px 0 0;
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 2;
   white-space: pre-line;
 }
-.chara__links { margin-top: 26px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+
+/* リンク */
+.chara__links { margin-top: 22px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .btn-x {
   display: inline-flex;
   align-items: center;
@@ -183,53 +387,108 @@
 }
 .btn-x:hover { border-color: var(--blue); transform: translateY(-2px); }
 
-/* 前後ナビ */
-.pager {
-  max-width: 1080px;
-  margin: 28px auto 0;
+/* ---------- MOVIE セクション ---------- */
+.chara-movie {
+  max-width: 760px;
+  margin: clamp(28px, 5vw, 48px) auto 0;
   padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  position: relative;
-  z-index: 1;
 }
-.pager a {
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 14px;
+}
+.section-head__en {
+  font-family: var(--font-en);
+  font-weight: 800;
+  font-size: clamp(20px, 3.4vw, 28px);
+  letter-spacing: 0.14em;
+  background: var(--grad-neon);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.section-head__stripes {
   flex: 1;
-  max-width: 46%;
-  padding: 12px 16px;
+  height: 12px;
+  border-radius: 999px;
+  background: repeating-linear-gradient(-55deg, var(--violet) 0 3px, transparent 3px 9px);
+  opacity: 0.5;
+}
+.movie-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
   border: 1px solid var(--line);
   border-radius: 14px;
-  text-decoration: none;
-  color: var(--text-sub);
-  font-size: 13px;
-  font-weight: 700;
-  background: var(--surface);
-  transition: color 0.2s ease, border-color 0.2s ease;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  background: var(--surface);
 }
-.pager a:hover { color: var(--text); border-color: var(--violet); }
-.pager a.next { text-align: right; margin-left: auto; }
+.movie-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+.movie-facade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  background-color: var(--surface-2);
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  place-items: center;
+}
+.movie-facade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 10, 16, 0.25);
+  transition: background 0.2s ease;
+}
+.movie-facade:hover::after { background: rgba(11, 10, 16, 0.05); }
+.movie-facade__play {
+  position: relative;
+  z-index: 1;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: var(--grad-neon);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 24px -6px rgba(255, 45, 120, 0.6);
+}
+.movie-facade__play::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12px 0 12px 20px;
+  border-color: transparent transparent transparent #fff;
+  margin-left: 5px;
+}
 
+/* ---------- レスポンシブ ---------- */
 @media (max-width: 680px) {
-  .chara { grid-template-columns: 1fr; min-height: 0; padding-top: 12px; }
+  .chara {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 24px 22px 20px;
+  }
+  .chara__frame { inset: 8px 10px; }
   .chara__watermark { font-size: clamp(80px, 24vw, 130px); }
-  .chara__vertical { display: none; } /* モバイルはキャッチを横書き(.chara__catch)のみに */
-  .chara__visual .avatar-lg { width: min(220px, 64%); box-shadow: 12px 12px 0 color-mix(in srgb, var(--rank-2) 22%, transparent); }
+  .chara__vertical { display: none; } /* モバイルは横書きの .chara__catch のみ */
+  .chara__visual .avatar-lg { width: min(220px, 64%); box-shadow: 12px 10px 0 color-mix(in srgb, var(--rank-2) 20%, transparent); margin-bottom: 8px; }
+  .chara__visual img.portrait { max-height: 480px; filter: drop-shadow(12px 10px 0 color-mix(in srgb, var(--rank-2) 20%, transparent)); }
+  .chara__data { padding-right: 0; }
+  .chara__specs > div { grid-template-columns: 6em 1fr; }
 }
 
 /* =============================================================
  * ビュー遷移アニメーション（一覧⇔個別のDOM切り替え時）
- *   9-nineの anim-ld と同系の fade-up を、要素ごとに時差で発火
+ *   .view-leave（160ms退場）→ .view-enter（要素ごとの時差登場）
+ *   全アニメ both 指定で初期状態をCSS側に残さない（reduced-motion対策）
  * ============================================================= */
 @keyframes view-fade-up {
   from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: none; }
-}
-@keyframes view-visual-in {
-  from { opacity: 0; transform: translateX(-26px); filter: drop-shadow(0 0 0 transparent); }
   to   { opacity: 1; transform: none; }
 }
 @keyframes view-fade {
@@ -240,27 +499,44 @@
   from { opacity: 1; }
   to   { opacity: 0; transform: translateY(-10px); }
 }
+@keyframes portrait-reveal {
+  from { opacity: 0.3; clip-path: inset(0 100% 0 0); }
+  to   { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+@keyframes line-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes frame-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
-/* 退場（app.jsが .view-leave を付けて160ms後に切り替え） */
 .view-leave { animation: view-out 0.16s ease both; }
 
-/* 個別ビューの登場（時差スタッガー） */
-.view-enter .topbar          { animation: view-fade 0.5s ease both; }
-.view-enter .chara__watermark{ animation: view-fade 0.9s ease 0.05s both; }
-.view-enter .chara__visual   { animation: view-visual-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
-.view-enter .chara__vertical { animation: view-fade-up 0.8s ease 0.55s both; }
-.view-enter .chara__data > * { animation: view-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
-.view-enter .chara__data > *:nth-child(1) { animation-delay: 0.18s; }
-.view-enter .chara__data > *:nth-child(2) { animation-delay: 0.26s; }
-.view-enter .chara__data > *:nth-child(3) { animation-delay: 0.34s; }
-.view-enter .chara__data > *:nth-child(4) { animation-delay: 0.42s; }
-.view-enter .chara__data > *:nth-child(5) { animation-delay: 0.50s; }
-.view-enter .pager           { animation: view-fade-up 0.6s ease 0.55s both; }
-.view-enter .cta             { animation: view-fade-up 0.6s ease 0.6s both; }
+/* 個別ビューの登場順: フレーム/ウォーターマーク → 立ち絵 → データ各行 → 縦書き → 下部 */
+.view-enter .topbar           { animation: view-fade 0.5s ease both; }
+.view-enter .chara__frame     { animation: frame-in 0.9s ease 0.05s both; }
+.view-enter .chara__watermark { animation: view-fade 0.9s ease 0.1s both; }
+.view-enter .chara__visual img.portrait { animation: portrait-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both; }
+.view-enter .chara__visual .avatar-lg   { animation: view-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both; }
+.view-enter .chara__name::after { animation: line-draw 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both; }
+.view-enter .chara__vertical  { animation: view-fade-up 0.8s ease 0.6s both; }
+.view-enter .chara__data > *  { animation: view-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.view-enter .chara__data > *:nth-child(1) { animation-delay: 0.16s; }
+.view-enter .chara__data > *:nth-child(2) { animation-delay: 0.24s; }
+.view-enter .chara__data > *:nth-child(3) { animation-delay: 0.32s; }
+.view-enter .chara__data > *:nth-child(4) { animation-delay: 0.40s; }
+.view-enter .chara__data > *:nth-child(5) { animation-delay: 0.48s; }
+.view-enter .chara__data > *:nth-child(6) { animation-delay: 0.56s; }
+.view-enter .chara__data > *:nth-child(7) { animation-delay: 0.64s; }
+.view-enter .chara__data > *:nth-child(8) { animation-delay: 0.72s; }
+.view-enter .chara-movie      { animation: view-fade-up 0.6s ease 0.6s both; }
+.view-enter .cta              { animation: view-fade-up 0.6s ease 0.66s both; }
 
-/* 一覧ビューの登場（全体をふわっと） */
-.view-enter .hero  { animation: view-fade-up 0.5s ease both; }
-.view-enter .tier  { animation: view-fade-up 0.55s ease both; }
+/* 一覧ビューの登場 */
+.view-enter .hero { animation: view-fade-up 0.5s ease both; }
+.view-enter .tier { animation: view-fade-up 0.55s ease both; }
 .view-enter .tier:nth-of-type(2) { animation-delay: 0.08s; }
 .view-enter .tier:nth-of-type(3) { animation-delay: 0.16s; }
 

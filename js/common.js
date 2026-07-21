@@ -34,6 +34,12 @@
     return /^https:\/\//i.test(s) ? s : "";
   }
 
+  // YouTube動画IDとして安全な文字列だけを返す（埋め込みiframeのsrc組み立て用）
+  function safeYouTubeId(id) {
+    var s = String(id == null ? "" : id).trim();
+    return /^[A-Za-z0-9_-]{11}$/.test(s) ? s : "";
+  }
+
   // el("div", "cast-card__name", "名前") 的な小さなDOMヘルパー
   function el(tag, className, text) {
     var node = document.createElement(tag);
@@ -49,6 +55,7 @@
     findCast: findCast,
     escapeHtml: escapeHtml,
     safeUrl: safeUrl,
+    safeYouTubeId: safeYouTubeId,
     el: el,
   };
 })();
