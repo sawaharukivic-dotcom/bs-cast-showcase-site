@@ -5,16 +5,21 @@
  *   構成: 上部キャスト切替ナビ（CloverDays風）＋ chara セクション＋MOVIE＋CTA
  * ============================================================= */
 
-/* ---------- 上部キャスト切替ナビ ---------- */
+/* ---------- キャスト切替ナビ（画面下部に固定のドック） ---------- */
 .cast-nav {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
-  background: rgba(11, 10, 16, 0.85);
+  background: rgba(11, 10, 16, 0.88);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom); /* iPhoneのホームバー回避 */
 }
+/* ナビ表示中（個別ビュー）はページ末尾がドックに隠れないよう余白を足す */
+body.cast-page { padding-bottom: 92px; }
 .cast-nav__scroll {
   display: flex;
   gap: 6px;
