@@ -193,8 +193,8 @@
   justify-content: center;
   align-items: flex-end;
 }
-/* 立ち絵スタック: 全衣装を重ねて置き、9-nine式の縦グラデマスクでクロスワイプ切替
-   マスクは高さ220%（黒45%/フェード10%/透明45%）。position 0 0=全表示 / 0 100%=全非表示 */
+/* 立ち絵スタック: 全衣装を重ねて置き、切替時は「初回表示と同じリビール」
+   （clip-pathで左→右に開くportrait-reveal）を再生する。旧衣装は即座に消える */
 .chara__portraits {
   position: relative;
   display: flex;
@@ -206,21 +206,7 @@
   max-height: 640px;
   object-fit: contain;
   opacity: 0;
-  -webkit-mask-image: linear-gradient(180deg, #000 45%, transparent 55%);
-  mask-image: linear-gradient(180deg, #000 45%, transparent 55%);
-  -webkit-mask-size: 100% 220%;
-  mask-size: 100% 220%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: 0 100%;
-  mask-position: 0 100%;
-  filter: drop-shadow(0 0 0 transparent);
-  /* 9-nine実測に合わせる: マスク0.8s ease・影は0.3s遅れて追従 */
-  transition:
-    -webkit-mask-position 0.8s ease,
-    mask-position 0.8s ease,
-    opacity 0.8s ease 0.1s,
-    filter 0.8s ease 0.3s;
+  pointer-events: none;
 }
 .chara__visual img.portrait:not(:first-child) {
   position: absolute;
@@ -231,10 +217,10 @@
 }
 .chara__visual img.portrait.is-current {
   opacity: 1;
-  -webkit-mask-position: 0 0;
-  mask-position: 0 0;
   filter: drop-shadow(18px 14px 0 color-mix(in srgb, var(--rank-2) 20%, transparent));
   z-index: 2;
+  /* is-currentが付くたびに初回と同じリビールを再生（.view-enter配下では下の指定が優先） */
+  animation: portrait-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .chara__visual .avatar-lg {
   width: min(300px, 78%);
@@ -622,5 +608,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .view-leave, .view-enter * { animation: none !important; }
-  .chara__visual img.portrait { transition: none !important; }
+  .chara__visual img.portrait { animation: none !important; transition: none !important; }
 }
