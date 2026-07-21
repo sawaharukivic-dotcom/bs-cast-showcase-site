@@ -36,8 +36,14 @@
   </div>
 
   <!-- キャスト切替ナビ（個別ビュー表示中のみ。app.jsが起動時に1回だけ生成） -->
-  <nav id="castNav" class="cast-nav" hidden aria-label="キャスト切替">
-    <div class="cast-nav__scroll" id="castNavScroll"></div>
+  <nav id="castNav" class="cast-nav" hidden aria-label="ランク入りキャスト切替">
+    <div class="cast-nav__inner">
+      <p class="cast-nav__title">
+        <span class="cast-nav__title-en">RANKED CASTS</span>
+        <span class="cast-nav__title-ja">ランク入りキャスト一覧</span>
+      </p>
+      <div class="cast-nav__scroll" id="castNavScroll"></div>
+    </div>
   </nav>
 
   <!-- 個別ビュー（app.js が生成） -->

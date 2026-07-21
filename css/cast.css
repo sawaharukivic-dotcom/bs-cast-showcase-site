@@ -5,26 +5,42 @@
  *   構成: 上部キャスト切替ナビ（CloverDays風）＋ chara セクション＋MOVIE＋CTA
  * ============================================================= */
 
-/* ---------- キャスト切替ナビ（画面下部に固定のドック） ---------- */
+/* ---------- キャスト切替ナビ（個別ビュー上部・固定なしの通常配置） ---------- */
 .cast-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  background: rgba(11, 10, 16, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-top: 1px solid var(--line);
-  padding-bottom: env(safe-area-inset-bottom); /* iPhoneのホームバー回避 */
+  border-bottom: 1px solid var(--line);
 }
-/* ナビ表示中（個別ビュー）はページ末尾がドックに隠れないよう余白を足す */
-body.cast-page { padding-bottom: 92px; }
+.cast-nav__inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 14px 20px 0;
+}
+/* 「ランク入りキャストの一覧」であることを示すラベル */
+.cast-nav__title {
+  margin: 0 0 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.cast-nav__title-en {
+  font-family: var(--font-en);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  background: var(--grad-neon);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.cast-nav__title-ja {
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  color: var(--text-sub);
+}
 .cast-nav__scroll {
   display: flex;
   gap: 6px;
   overflow-x: auto;
-  padding: 10px 16px;
+  padding: 4px 4px 12px;
   scrollbar-width: none;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 24px), transparent);
   mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 24px), transparent);
