@@ -10,8 +10,8 @@ window.SHOWCASE = {
       "name": "鹿鳴りあ",
       "name_reading": "ロクメリア",
       "rank": "GOLD",
-      "catch": "",
-      "intro": "",
+      "catch": "歌とガンダムが大好きなバンビ系VTuberの鹿鳴りあです！\n自己紹介動画を作成していただきました✨\nこれを機に沢山のことを知っていただけたら嬉しいです！",
+      "intro": "歌とガンダムが大好きなバンビ系VTuberの鹿鳴りあです！\n自己紹介動画を作成していただきました✨\nこれを機に沢山のことを知っていただけたら嬉しいです！",
       "x_url": "https://x.com/69meeeeeee",
       "portrait": "",
       "icon": "assets/172_icon.webp"
