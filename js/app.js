@@ -340,7 +340,19 @@
             if (tab.classList.contains("is-active")) return;
             tabs.querySelectorAll(".chara__costume").forEach(function (n) { n.classList.remove("is-active"); });
             tab.classList.add("is-active");
-            imgs.forEach(function (other, j) { other.classList.toggle("is-current", i === j); });
+            // 前の立ち絵は表示したまま(.is-prev)、新しい立ち絵が上にリビールで重なる。
+            // リビール完了後に前の立ち絵をフェードアウトさせる
+            imgs.forEach(function (other, j) {
+              if (i === j) return;
+              if (other.classList.contains("is-current")) {
+                other.classList.remove("is-current");
+                other.classList.add("is-prev");
+                window.setTimeout(function () { other.classList.remove("is-prev"); }, 950);
+              } else {
+                other.classList.remove("is-prev");
+              }
+            });
+            imgs[i].classList.add("is-current");
           });
           tabs.appendChild(tab);
         });

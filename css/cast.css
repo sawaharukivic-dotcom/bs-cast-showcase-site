@@ -194,7 +194,8 @@
   align-items: flex-end;
 }
 /* 立ち絵スタック: 全衣装を重ねて置き、切替時は「初回表示と同じリビール」
-   （clip-pathで左→右に開くportrait-reveal）を再生する。旧衣装は即座に消える */
+   （clip-pathで左→右に開くportrait-reveal）を再生する。
+   前の衣装(.is-prev)は表示したまま下に残し、リビール完了後にフェードアウト */
 .chara__portraits {
   position: relative;
   display: flex;
@@ -207,6 +208,12 @@
   object-fit: contain;
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.3s ease; /* .is-prevが外れるときのフェードアウト用 */
+}
+.chara__visual img.portrait.is-prev {
+  opacity: 1;
+  z-index: 1;
+  filter: drop-shadow(18px 14px 0 color-mix(in srgb, var(--rank-2) 20%, transparent));
 }
 .chara__visual img.portrait:not(:first-child) {
   position: absolute;
@@ -543,7 +550,8 @@
   .chara__vertical { display: none; } /* モバイルは横書きの .chara__catch のみ */
   .chara__visual .avatar-lg { width: min(220px, 64%); box-shadow: 12px 10px 0 color-mix(in srgb, var(--rank-2) 20%, transparent); margin-bottom: 8px; }
   .chara__visual img.portrait { max-height: 480px; }
-  .chara__visual img.portrait.is-current { filter: drop-shadow(12px 10px 0 color-mix(in srgb, var(--rank-2) 20%, transparent)); }
+  .chara__visual img.portrait.is-current,
+  .chara__visual img.portrait.is-prev { filter: drop-shadow(12px 10px 0 color-mix(in srgb, var(--rank-2) 20%, transparent)); }
   .chara__data { padding-right: 0; }
   .chara__specs > div { grid-template-columns: 6em 1fr; }
 }
