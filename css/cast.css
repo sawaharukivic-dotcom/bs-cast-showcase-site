@@ -209,7 +209,8 @@
   object-fit: contain;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease; /* .is-prevが外れるときのフェードアウト用 */
+  /* 注意: ここにopacityのtransitionを入れないこと。
+     .is-prevが外れる瞬間にクリップ解除状態でフェードが走り、旧立ち絵が一瞬全体表示される */
 }
 .chara__visual img.portrait.is-prev {
   opacity: 1;
