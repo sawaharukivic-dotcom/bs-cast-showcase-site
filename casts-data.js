@@ -93,7 +93,9 @@ window.SHOWCASE = {
       "intro": "ふわふわピンクのマルチーズ系バーチャル犬。「生涯VTuber・生涯いっしょ」を掲げて、みんなの日々のモチベーションになるべく活動中です。\nゲームも食べることも大好き。深夜のひとときに癒しをどうぞ。",
       "x_url": "https://x.com/uta_wanUo_oU",
       "portrait": "",
-      "portraits": [],
+      "portraits": [
+        "assets/296_KV02.webp"
+      ],
       "icon": "assets/296_icon.webp",
       "tags": [
         "わんこ",
@@ -115,7 +117,7 @@ window.SHOWCASE = {
           "value": "夜 23:00〜1:00 中心"
         }
       ],
-      "youtube_id": "",
+      "youtube_id": "ig4cO9W692M",
       "links": [
         {
           "label": "YouTube",
