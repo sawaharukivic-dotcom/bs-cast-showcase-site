@@ -61,6 +61,7 @@
   .dlg-hint { display: block; margin-top: 3px; font-size: 11px; color: #2c7a2c; min-height: 14px; }
   .dlg-error { display: block; margin-top: 3px; font-size: 11px; color: #c02950; min-height: 14px; }
   .dlg-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 6px; }
+  .dlg-upload { display: flex; gap: 10px; margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -133,6 +134,16 @@
     </div>
     <label>立ち絵（1行 = assetsのパス / 上から順に①②…）
       <textarea id="dlgPortraits" rows="3" placeholder="assets/172_KV01.png&#10;assets/172_KV02.png"></textarea>
+    </label>
+
+    <label>画像アップロード（PNGのみ・原寸でOK/軽量化は自動）
+      <span class="dlg-upload">
+        <input type="file" id="dlgFilePortrait" accept="image/png" hidden />
+        <input type="file" id="dlgFileIcon" accept="image/png" hidden />
+        <button type="button" id="dlgUploadPortrait">立ち絵を追加…</button>
+        <button type="button" id="dlgUploadIcon">アイコンを差し替え…</button>
+      </span>
+      <span class="dlg-hint" id="dlgUploadStatus"></span>
     </label>
     <p class="dlg-error" id="dlgError"></p>
     <div class="dlg-actions">
@@ -413,6 +424,7 @@
     dlgPortraits.value = (m.portraits || []).join("\n");
     dlgSpecsError.textContent = "";
     dlgError.textContent = "";
+    document.getElementById("dlgUploadStatus").textContent = "";
     updateYoutubeHint();
     dlg.showModal();
   }
@@ -449,6 +461,101 @@
     updateBadge(editing.cast, editing.badge);
     dlg.close();
   });
+
+  // ---- 画像アップロード（GitHubへ直接コミット→パス欄へ自動追記） ----
+  var uploadStatus = document.getElementById("dlgUploadStatus");
+  var MAX_UPLOAD = 24 * 1024 * 1024; // contents APIの上限を考慮して24MBまで
+
+  function fileToBase64(file) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () { resolve(String(reader.result).split(",")[1]); };
+      reader.onerror = function () { reject(new Error("ファイルを読み込めませんでした")); };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // site/assets の一覧（既存KV番号の採番・アイコン上書き時のsha取得に使う）
+  function listAssets() {
+    return api("/repos/" + OWNER + "/" + REPO + "/contents/site/assets?ref=" + BRANCH)
+      .then(function (res) {
+        if (!res.ok) throw new Error("assets一覧の取得に失敗しました (" + res.status + ")");
+        return res.json();
+      });
+  }
+
+  function putAsset(name, b64, message, sha) {
+    var body = { message: message, content: b64, branch: BRANCH };
+    if (sha) body.sha = sha;
+    return api("/repos/" + OWNER + "/" + REPO + "/contents/site/assets/" + name, {
+      method: "PUT",
+      body: JSON.stringify(body),
+    }).then(function (res) {
+      if (res.status === 409 || res.status === 422) throw new Error("競合しました。少し待ってからやり直してください");
+      if (!res.ok) throw new Error("アップロードに失敗しました (" + res.status + ")");
+      return res.json();
+    });
+  }
+
+  function validatePng(file) {
+    if (!file) return "ファイルが選ばれていません";
+    if (file.type !== "image/png" && !/\.png$/i.test(file.name)) return "PNG形式のみアップロードできます";
+    if (file.size > MAX_UPLOAD) return "24MBを超えています。画像を縮小してください";
+    return null;
+  }
+
+  function handleUpload(kind, file) {
+    if (!editing) return;
+    var err = validatePng(file);
+    if (err) { uploadStatus.textContent = "⚠ " + err; return; }
+    var castId = editing.cast.cast_id;
+    uploadStatus.textContent = "アップロード中…（" + Math.round(file.size / 1024 / 1024 * 10) / 10 + "MB）";
+
+    Promise.all([fileToBase64(file), listAssets()])
+      .then(function (results) {
+        var b64 = results[0];
+        var entries = results[1];
+        if (kind === "portrait") {
+          // 既存の {id}_KVnn.png とパス欄の記載から次の番号を採番
+          var maxN = 0;
+          var re = new RegExp("^" + castId + "_KV(\\d+)\\.png$");
+          entries.forEach(function (e) {
+            var m = e.name.match(re);
+            if (m) maxN = Math.max(maxN, parseInt(m[1], 10));
+          });
+          dlgPortraits.value.split("\n").forEach(function (line) {
+            var m = line.trim().match(new RegExp("^assets/" + castId + "_KV(\\d+)\\.png$"));
+            if (m) maxN = Math.max(maxN, parseInt(m[1], 10));
+          });
+          var name = castId + "_KV" + String(maxN + 1).padStart(2, "0") + ".png";
+          return putAsset(name, b64, "content: 立ち絵アップロード " + name + "（管理画面から）", null)
+            .then(function () {
+              var lines = dlgPortraits.value.split("\n").map(function (s) { return s.trim(); }).filter(Boolean);
+              lines.push("assets/" + name);
+              dlgPortraits.value = lines.join("\n");
+              uploadStatus.textContent = "✅ " + name + " をアップロードしました。「反映」→「変更を保存」で公開されます";
+            });
+        } else {
+          var iconName = castId + "_icon.png";
+          var existing = entries.filter(function (e) { return e.name === iconName; })[0];
+          return putAsset(iconName, b64, "content: アイコン差し替え " + iconName + "（管理画面から）", existing ? existing.sha : null)
+            .then(function () {
+              if (!editing.cast.manual.icon) editing.cast.manual.icon = "assets/" + iconName;
+              markDirty(editing.cast.cast_id);
+              updateBadge(editing.cast, editing.badge);
+              uploadStatus.textContent = "✅ アイコンを差し替えました（一覧の画像は数分後に反映）";
+            });
+        }
+      })
+      .catch(function (e2) { uploadStatus.textContent = "⚠ " + e2.message; });
+  }
+
+  var filePortrait = document.getElementById("dlgFilePortrait");
+  var fileIcon = document.getElementById("dlgFileIcon");
+  document.getElementById("dlgUploadPortrait").addEventListener("click", function () { filePortrait.click(); });
+  document.getElementById("dlgUploadIcon").addEventListener("click", function () { fileIcon.click(); });
+  filePortrait.addEventListener("change", function () { handleUpload("portrait", filePortrait.files[0]); filePortrait.value = ""; });
+  fileIcon.addEventListener("change", function () { handleUpload("icon", fileIcon.files[0]); fileIcon.value = ""; });
 
   // ---- 接続フロー ----
   function showApp() {
