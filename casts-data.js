@@ -35,9 +35,13 @@ window.SHOWCASE = {
           "value": "夜 20:00〜23:00 中心"
         }
       ],
-      "youtube_id": "Etjbpq6O7FE",
-      "other_url": "https://www.youtube.com/@69meeeeeee",
-      "other_label": "YouTube",
+      "youtube_id": "",
+      "links": [
+        {
+          "label": "YouTube",
+          "url": "https://www.youtube.com/@69meeeeeee"
+        }
+      ],
       "profile_url": "https://back-stage.onelink.me/7z4p/2n9d4530",
       "birth_month": "8月",
       "call_category": "ドリーマー"
@@ -51,9 +55,7 @@ window.SHOWCASE = {
       "intro": "「納豆のパッケージマスコットになりたい」納豆系VTuber。ほぼ毎日配信で活動5年目という継続力と、ガンダムWや逆シャアを熱く語れるオタク力を併せ持つ、GOLDクラスの実力派です。",
       "x_url": "https://x.com/mitowakana",
       "portrait": "",
-      "portraits": [
-        "assets/232_KV01.webp"
-      ],
+      "portraits": [],
       "icon": "assets/232_icon.webp",
       "tags": [
         "納豆",
@@ -72,8 +74,12 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "https://www.youtube.com/@mitowakana",
-      "other_label": "YouTube",
+      "links": [
+        {
+          "label": "YouTube",
+          "url": "https://www.youtube.com/@mitowakana"
+        }
+      ],
       "profile_url": "",
       "birth_month": "",
       "call_category": "フレンドリー"
@@ -87,9 +93,7 @@ window.SHOWCASE = {
       "intro": "ふわふわピンクのマルチーズ系バーチャル犬。「生涯VTuber・生涯いっしょ」を掲げて、みんなの日々のモチベーションになるべく活動中です。\nゲームも食べることも大好き。深夜のひとときに癒しをどうぞ。",
       "x_url": "https://x.com/uta_wanUo_oU",
       "portrait": "",
-      "portraits": [
-        "assets/296_KV01.webp"
-      ],
+      "portraits": [],
       "icon": "assets/296_icon.webp",
       "tags": [
         "わんこ",
@@ -111,9 +115,13 @@ window.SHOWCASE = {
           "value": "夜 23:00〜1:00 中心"
         }
       ],
-      "youtube_id": "ig4cO9W692M",
-      "other_url": "https://www.youtube.com/channel/UCp45rWiRwgYZJUR4bQO-Xgw",
-      "other_label": "YouTube",
+      "youtube_id": "",
+      "links": [
+        {
+          "label": "YouTube",
+          "url": "https://www.youtube.com/channel/UCp45rWiRwgYZJUR4bQO-Xgw"
+        }
+      ],
       "profile_url": "",
       "birth_month": "11月",
       "call_category": "ドリーマー"
@@ -127,10 +135,7 @@ window.SHOWCASE = {
       "intro": "スナックママ系VTuberとして、疲れた大人の止まり木になっています。お酒の話はもちろん、信念を曲げない芯の強さも魅力。\n深夜までたっぷり話せるSILVERクラスの実力派です。",
       "x_url": "https://x.com/TamakiYouBS",
       "portrait": "",
-      "portraits": [
-        "assets/241_KV01.webp",
-        "assets/241_KV02.webp"
-      ],
+      "portraits": [],
       "icon": "assets/241_icon.webp",
       "tags": [
         "スナックママ",
@@ -149,8 +154,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "3月",
       "call_category": "ドリーマー"
@@ -183,8 +187,12 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "https://lit.link/riu_ttid",
-      "other_label": "lit.link",
+      "links": [
+        {
+          "label": "lit.link",
+          "url": "https://lit.link/riu_ttid"
+        }
+      ],
       "profile_url": "",
       "birth_month": "1月",
       "call_category": "ドリーマー"
@@ -221,8 +229,12 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "https://www.youtube.com/@tenshitiyomu",
-      "other_label": "YouTube",
+      "links": [
+        {
+          "label": "YouTube",
+          "url": "https://www.youtube.com/@tenshitiyomu"
+        }
+      ],
       "profile_url": "",
       "birth_month": "10月",
       "call_category": "ドリーマー"
@@ -251,8 +263,12 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "https://www.youtube.com/@KUMANOMORUchan",
-      "other_label": "YouTube",
+      "links": [
+        {
+          "label": "YouTube",
+          "url": "https://www.youtube.com/@KUMANOMORUchan"
+        }
+      ],
       "profile_url": "",
       "birth_month": "",
       "call_category": "ドリーマー"
@@ -289,8 +305,12 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "https://lit.link/en/midokulobha",
-      "other_label": "lit.link",
+      "links": [
+        {
+          "label": "lit.link",
+          "url": "https://lit.link/en/midokulobha"
+        }
+      ],
       "profile_url": "",
       "birth_month": "10月",
       "call_category": "フレンドリー"
@@ -323,8 +343,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "8月",
       "call_category": "ドリーマー"
@@ -357,8 +376,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "11月",
       "call_category": "ドリーマー"
@@ -392,8 +410,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "12月",
       "call_category": "フレンドリー"
@@ -426,8 +443,12 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "https://www.youtube.com/@amataxi",
-      "other_label": "YouTube",
+      "links": [
+        {
+          "label": "YouTube",
+          "url": "https://www.youtube.com/@amataxi"
+        }
+      ],
       "profile_url": "",
       "birth_month": "2月",
       "call_category": "フレンドリー"
@@ -465,8 +486,12 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "https://www.youtube.com/@chozetsu_haochi",
-      "other_label": "YouTube",
+      "links": [
+        {
+          "label": "YouTube",
+          "url": "https://www.youtube.com/@chozetsu_haochi"
+        }
+      ],
       "profile_url": "",
       "birth_month": "",
       "call_category": ""
@@ -494,8 +519,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "m-00kOuKKzw",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "12月",
       "call_category": "フレンドリー"
@@ -524,8 +548,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "9月",
       "call_category": "フレンドリー"
@@ -562,8 +585,12 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "https://twitcasting.tv/pochakk666",
-      "other_label": "ツイキャス",
+      "links": [
+        {
+          "label": "ツイキャス",
+          "url": "https://twitcasting.tv/pochakk666"
+        }
+      ],
       "profile_url": "",
       "birth_month": "3月",
       "call_category": "ドリーマー"
@@ -596,8 +623,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "3月",
       "call_category": "ドリーマー"
@@ -626,8 +652,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "2月",
       "call_category": "フレンドリー"
@@ -655,8 +680,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "4月",
       "call_category": "ドリーマー"
@@ -689,8 +713,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "12月",
       "call_category": "ドリーマー"
@@ -718,8 +741,12 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "https://lit.link/ousakiharune",
-      "other_label": "lit.link",
+      "links": [
+        {
+          "label": "lit.link",
+          "url": "https://lit.link/ousakiharune"
+        }
+      ],
       "profile_url": "",
       "birth_month": "",
       "call_category": "ドリーマー"
@@ -747,8 +774,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "11月",
       "call_category": "フレンドリー"
@@ -776,8 +802,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "3月",
       "call_category": "フレンドリー"
@@ -804,8 +829,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "2月",
       "call_category": "フレンドリー"
@@ -838,8 +862,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "5月",
       "call_category": "ドリーマー"
@@ -867,8 +890,7 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "links": [],
       "profile_url": "",
       "birth_month": "10月",
       "call_category": "ドキドキ"
@@ -901,8 +923,12 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "",
-      "other_url": "https://www.youtube.com/@komukai_nanoka",
-      "other_label": "YouTube",
+      "links": [
+        {
+          "label": "YouTube",
+          "url": "https://www.youtube.com/@komukai_nanoka"
+        }
+      ],
       "profile_url": "",
       "birth_month": "2月",
       "call_category": "ドリーマー"
@@ -939,8 +965,12 @@ window.SHOWCASE = {
         }
       ],
       "youtube_id": "OrDMuMUgl-k",
-      "other_url": "https://lit.link/sayagrace38",
-      "other_label": "lit.link",
+      "links": [
+        {
+          "label": "lit.link",
+          "url": "https://lit.link/sayagrace38"
+        }
+      ],
       "profile_url": "",
       "birth_month": "",
       "call_category": "ドリーマー"

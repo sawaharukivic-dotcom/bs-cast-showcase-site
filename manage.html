@@ -174,10 +174,10 @@
       <label>X（Twitter）URL（空なら自動で作られます）
         <input type="text" id="dlgX" />
       </label>
-      <div class="dlg-pair">
-        <label>自由リンクの表示名<input type="text" id="dlgOtherLabel" placeholder="LINK" /></label>
-        <label>自由リンクURL（https://）<input type="text" id="dlgOtherUrl" placeholder="https://..." /></label>
-      </div>
+      <label>自由リンク（1行 = ラベル: URL / 10個まで・上から順にボタンが並びます）
+        <textarea id="dlgLinks" rows="3" placeholder="YouTube: https://www.youtube.com/@xxx&#10;lit.link: https://lit.link/xxx"></textarea>
+        <span class="dlg-error" id="dlgLinksError"></span>
+      </label>
       <label>紹介動画 YouTube URL
         <input type="text" id="dlgYoutube" placeholder="https://www.youtube.com/watch?v=..." />
         <span class="dlg-hint" id="dlgYoutubeHint"></span>
@@ -389,8 +389,8 @@
   var dlgYoutube = document.getElementById("dlgYoutube");
   var dlgYoutubeHint = document.getElementById("dlgYoutubeHint");
   var dlgProfileUrl = document.getElementById("dlgProfileUrl");
-  var dlgOtherLabel = document.getElementById("dlgOtherLabel");
-  var dlgOtherUrl = document.getElementById("dlgOtherUrl");
+  var dlgLinks = document.getElementById("dlgLinks");
+  var dlgLinksError = document.getElementById("dlgLinksError");
   var dlgPortraits = document.getElementById("dlgPortraits");
   var dlgName = document.getElementById("dlgName");
   var dlgCatch = document.getElementById("dlgCatch");
@@ -432,6 +432,19 @@
     }
     return { rows: rows };
   }
+  function parseLinks(text) {
+    var rows = [];
+    var lines = text.split("\n");
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+      if (!line) continue;
+      var m = line.match(/^([^:：]+)[:：]\s*(https:\/\/\S+)$/);
+      if (!m) return { error: i + 1 };
+      rows.push({ label: m[1].trim(), url: m[2].trim() });
+    }
+    return { rows: rows };
+  }
+
   function splitList(text, sep) {
     return text.split(sep).map(function (s) { return s.trim(); }).filter(Boolean);
   }
@@ -443,7 +456,7 @@
     if ((m.specs || []).length) parts.push("表" + m.specs.length);
     if (m.youtube_url) parts.push("動画");
     if (m.profile_url) parts.push("プロフ");
-    if (m.other_url) parts.push("リンク");
+    if ((m.links || []).length) parts.push("リンク" + m.links.length);
     return parts.length ? parts.join("/") : "未入力";
   }
   function updateBadge(cast, badge) {
@@ -454,7 +467,7 @@
     if ((m.specs || []).length) parts.push("表" + m.specs.length);
     if (m.youtube_url) parts.push("動画");
     if (m.profile_url) parts.push("プロフ");
-    if (m.other_url) parts.push("リンク");
+    if ((m.links || []).length) parts.push("リンク" + m.links.length);
     badge.textContent = parts.length ? parts.join(" / ") : "未設定";
   }
   function renderPortraitPreview(cast) {
@@ -507,8 +520,8 @@
     dlgIntro.value = m.intro || "";
     dlgX.value = m.x_url || "";
     dlgX.placeholder = a.x_account ? "空欄なら " + a.x_account + " から自動" : "";
-    dlgOtherLabel.value = m.other_label || "";
-    dlgOtherUrl.value = m.other_url || "";
+    dlgLinks.value = (m.links || []).map(function (r) { return r.label + ": " + r.url; }).join("\n");
+    dlgLinksError.textContent = "";
     dlgYoutube.value = m.youtube_url || "";
     dlgProfileUrl.value = m.profile_url || "";
     dlgPortraits.value = (m.portraits || []).join("\n");
@@ -533,15 +546,19 @@
     var portraits = splitList(dlgPortraits.value, "\n");
     var youtube = dlgYoutube.value.trim();
     var profileUrl = dlgProfileUrl.value.trim();
-    var otherUrl = dlgOtherUrl.value.trim();
+    var linksParsed = parseLinks(dlgLinks.value);
     var xUrl = dlgX.value.trim();
+    if (linksParsed.error) {
+      dlgLinksError.textContent = linksParsed.error + "行目が「ラベル: https://…」の形式になっていません";
+      return;
+    }
     if (tags.length > 10) { dlgError.textContent = "タグは10個までです"; return; }
     if (specs.rows.length > 10) { dlgError.textContent = "スペック表は10行までです"; return; }
     if (portraits.length > 10) { dlgError.textContent = "立ち絵は10枚までです"; return; }
     if (youtube && !youtubeId(youtube)) { dlgError.textContent = "YouTube URLから動画IDを認識できません"; return; }
     if (xUrl && xUrl.indexOf("https://") !== 0) { dlgError.textContent = "X URLは https:// で始めてください（空欄なら自動）"; return; }
     if (profileUrl && profileUrl.indexOf("https://") !== 0) { dlgError.textContent = "プロフィールURLは https:// で始めてください"; return; }
-    if (otherUrl && otherUrl.indexOf("https://") !== 0) { dlgError.textContent = "自由リンクURLは https:// で始めてください"; return; }
+    if (linksParsed.rows.length > 10) { dlgError.textContent = "自由リンクは10個までです"; return; }
     var m = editing.cast.manual;
     m.name = dlgName.value.trim();
     m.catch = dlgCatch.value;
@@ -551,8 +568,7 @@
     m.specs = specs.rows;
     m.youtube_url = youtube;
     m.profile_url = profileUrl;
-    m.other_label = dlgOtherLabel.value.trim();
-    m.other_url = otherUrl;
+    m.links = linksParsed.rows;
     m.portraits = portraits;
     m.published = dlgPublished.checked;
     if (editing.cast._pubCheckbox) editing.cast._pubCheckbox.checked = m.published;

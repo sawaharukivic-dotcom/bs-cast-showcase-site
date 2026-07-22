@@ -408,16 +408,17 @@
       xBtn.textContent = "𝕏 フォローする";
       links.appendChild(xBtn);
     }
-    var otherUrl = S.safeUrl(cast.other_url);
-    if (otherUrl) {
-      var otherBtn = document.createElement("a");
-      otherBtn.className = "btn-x";
-      otherBtn.href = otherUrl;
-      otherBtn.target = "_blank";
-      otherBtn.rel = "noopener";
-      otherBtn.textContent = "🔗 " + (cast.other_label || "LINK");
-      links.appendChild(otherBtn);
-    }
+    (cast.links || []).forEach(function (row) {
+      var url = S.safeUrl(row && row.url);
+      if (!url) return;
+      var btn = document.createElement("a");
+      btn.className = "btn-x";
+      btn.href = url;
+      btn.target = "_blank";
+      btn.rel = "noopener";
+      btn.textContent = "🔗 " + (row.label || "LINK");
+      links.appendChild(btn);
+    });
     if (links.childNodes.length) data.appendChild(links);
 
     chara.appendChild(data);
