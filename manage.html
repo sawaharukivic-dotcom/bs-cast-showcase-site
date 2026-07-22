@@ -102,13 +102,12 @@
     <span id="status"></span>
     <button id="reloadBtn">再読込</button>
     <button id="logoutBtn">トークン変更</button>
-    <button class="primary" id="saveBtn" disabled>変更を保存（＝公開）</button>
   </header>
   <main>
     <p class="note">
       キャストの行の「編集」を押すと、実際のキャストページと同じ並びでまとめて編集できます。
       ランク・読み・誕生月・タイプと表示順（判定売上順）は毎月の更新で自動設定されます。
-      <strong>編集→「この内容で反映」→ 右上「変更を保存」で数分後に本番サイトへ反映されます。</strong>
+      <strong>「保存する」を押すとそのまま本番サイトへ反映されます（約3分）。</strong>
     </p>
     <table>
       <thead>
@@ -195,7 +194,7 @@
     <p class="dlg-error" id="dlgError"></p>
     <div class="dlg-actions">
       <button type="button" id="dlgCancel">キャンセル</button>
-      <button type="button" class="primary" id="dlgApply">この内容で反映</button>
+      <button type="button" class="primary" id="dlgApply">保存する</button>
     </div>
   </form>
 </dialog>
@@ -212,13 +211,11 @@
 
   var data = null;      // casts.json の中身
   var fileSha = null;   // 楽観ロック用（GitHub contents APIのsha）
-  var dirtyIds = new Set();
   var RANK_ORDER = { GOLD: 0, SILVER: 1, BRONZE: 2 };
 
   var loginView = document.getElementById("loginView");
   var appView = document.getElementById("appView");
   var statusEl = document.getElementById("status");
-  var saveBtn = document.getElementById("saveBtn");
 
   function token() { return localStorage.getItem(TOKEN_KEY) || ""; }
 
@@ -247,11 +244,6 @@
   }
 
   function setStatus(text) { statusEl.textContent = text; }
-  function markDirty(id) {
-    dirtyIds.add(id);
-    saveBtn.disabled = false;
-    setStatus("未保存の変更 " + dirtyIds.size + "件");
-  }
 
   // ---- 読み込み ----
   function loadCasts() {
@@ -266,58 +258,39 @@
       .then(function (body) {
         fileSha = body.sha;
         data = JSON.parse(b64decodeUtf8(body.content));
-        dirtyIds.clear();
-        saveBtn.disabled = true;
         render();
         setStatus("読み込み完了（" + data.casts.length + "名 / 同期: " + ((data.meta || {}).synced_at || "?") + "）");
       });
   }
 
   // ---- 保存（mainへコミット → Actionsが自動デプロイ） ----
-  function save() {
-    saveBtn.disabled = true;
+  // 保存＝mainへ即コミット（Actionsが自動で本番反映）。呼び出し元ごとにメッセージを渡す
+  function saveData(message) {
     setStatus("保存中…");
-    var names = [];
-    data.casts.forEach(function (c) { if (dirtyIds.has(c.cast_id)) names.push(c.manual.name || String(c.cast_id)); });
     var body = {
-      message: "content: 管理画面から更新（" + names.slice(0, 5).join("・") + (names.length > 5 ? " 他" : "") + "）",
+      message: message,
       content: b64encodeUtf8(JSON.stringify(data, null, 2) + "\n"),
       sha: fileSha,
       branch: BRANCH,
     };
-    api("/repos/" + OWNER + "/" + REPO + "/contents/" + FILE_PATH, {
+    return api("/repos/" + OWNER + "/" + REPO + "/contents/" + FILE_PATH, {
       method: "PUT",
       body: JSON.stringify(body),
     })
       .then(function (res) {
         if (res.status === 409 || res.status === 422) {
-          throw new Error("他の人が先に保存したため競合しました。「再読込」してからやり直してください（今の編集内容は失われます）");
+          throw new Error("他の人が先に保存したため競合しました。「再読込」してからやり直してください");
         }
         if (!res.ok) throw new Error("保存に失敗しました (" + res.status + ")");
         return res.json();
       })
       .then(function (body) {
         fileSha = body.content.sha;
-        dirtyIds.clear();
-        document.querySelectorAll(".dirty").forEach(function (n) { n.classList.remove("dirty"); });
         setStatus("保存しました。約3分後に本番サイトへ自動反映されます");
-      })
-      .catch(function (err) {
-        saveBtn.disabled = false;
-        setStatus("エラー: " + err.message);
       });
   }
-  saveBtn.addEventListener("click", save);
 
   // ---- 表の描画（ローカル管理画面と同構成） ----
-  function field(cast, key, input) {
-    input.addEventListener("input", function () {
-      cast.manual[key] = input.value;
-      input.classList.add("dirty");
-      markDirty(cast.cast_id);
-    });
-    return input;
-  }
 
   function render() {
     var tbody = document.getElementById("rows");
@@ -361,8 +334,16 @@
       tdPub.className = "center";
       var pub = document.createElement("input"); pub.type = "checkbox"; pub.checked = cast.manual.published;
       pub.addEventListener("change", function () {
-        cast.manual.published = pub.checked;
-        markDirty(cast.cast_id);
+        var next = pub.checked;
+        cast.manual.published = next;
+        pub.disabled = true;
+        saveData("content: " + (cast.manual.name || cast.cast_id) + " を" + (next ? "公開" : "非公開") + "に（管理画面）")
+          .catch(function (err) {
+            cast.manual.published = !next;
+            pub.checked = !next;
+            setStatus("エラー: " + err.message);
+          })
+          .then(function () { pub.disabled = false; });
       });
       cast._pubCheckbox = pub;
       tdPub.appendChild(pub);
@@ -572,9 +553,21 @@
     m.portraits = portraits;
     m.published = dlgPublished.checked;
     if (editing.cast._pubCheckbox) editing.cast._pubCheckbox.checked = m.published;
-    markDirty(editing.cast.cast_id);
-    render();
-    dlg.close();
+    var applyBtn = document.getElementById("dlgApply");
+    applyBtn.disabled = true;
+    applyBtn.textContent = "保存中…";
+    saveData("content: " + (m.name || editing.cast.cast_id) + " を更新（管理画面）")
+      .then(function () {
+        render();
+        dlg.close();
+      })
+      .catch(function (err) {
+        dlgError.textContent = err.message;
+      })
+      .then(function () {
+        applyBtn.disabled = false;
+        applyBtn.textContent = "保存する";
+      });
   });
 
   // ---- 画像アップロード（GitHubへ直接コミット→パス欄へ自動追記） ----
@@ -648,7 +641,7 @@
               var lines = dlgPortraits.value.split("\n").map(function (s) { return s.trim(); }).filter(Boolean);
               lines.push("assets/" + name);
               dlgPortraits.value = lines.join("\n");
-              uploadStatus.textContent = "✅ " + name + " をアップロードしました。「反映」→「変更を保存」で公開されます";
+              uploadStatus.textContent = "✅ " + name + " を追加しました。下の「保存する」で公開されます（プレビュー表示は公開後）";
             });
         } else {
           var iconName = castId + "_icon.png";
@@ -656,7 +649,6 @@
           return putAsset(iconName, b64, "content: アイコン差し替え " + iconName + "（管理画面から）", existing ? existing.sha : null)
             .then(function () {
               if (!editing.cast.manual.icon) editing.cast.manual.icon = "assets/" + iconName;
-              markDirty(editing.cast.cast_id);
               render();
               uploadStatus.textContent = "✅ アイコンを差し替えました（一覧の画像は数分後に反映）";
             });
@@ -689,7 +681,6 @@
     loadCasts().then(showApp).catch(function (err) { showLogin(err.message); });
   });
   document.getElementById("reloadBtn").addEventListener("click", function () {
-    if (dirtyIds.size && !confirm("未保存の変更があります。破棄して再読込しますか？")) return;
     loadCasts().catch(function (err) { setStatus("エラー: " + err.message); });
   });
   document.getElementById("logoutBtn").addEventListener("click", function () {
