@@ -77,42 +77,110 @@ window.SHOWCASE = {
       "call_category": "フレンドリー"
     },
     {
-      "cast_id": 205,
-      "name": "三毒ローパ",
-      "name_reading": "ミドクローパ",
+      "cast_id": 296,
+      "name": "宇田わん",
+      "name_reading": "ウタワン",
       "rank": "SILVER",
-      "catch": "甘く優しい“毒”に、今夜も堕ちてみる？",
-      "intro": "仏教の三毒「貪」の化身を名乗る、人外お姉さんVSinger。人を甘やかすのが大好きで、甘さに堕落していく人間を眺めて微笑んでいます。\n優しい女王様に甘やかされたい夜に。",
-      "x_url": "https://x.com/MidokuLobha",
+      "catch": "こんわんわ〜！ ふわふわピンクの生涯VTuber。",
+      "intro": "ふわふわピンクのマルチーズ系バーチャル犬。「生涯VTuber・生涯いっしょ」を掲げて、みんなの日々のモチベーションになるべく活動中です。\nゲームも食べることも大好き。深夜のひとときに癒しをどうぞ。",
+      "x_url": "https://x.com/uta_wanUo_oU",
       "portrait": "",
       "portraits": [],
-      "icon": "assets/205_icon.webp",
+      "icon": "assets/296_icon.webp",
       "tags": [
-        "人外お姉さん",
-        "甘やかし",
-        "歌",
-        "夜型"
+        "わんこ",
+        "ゲーム",
+        "食いしんぼう",
+        "深夜組"
       ],
       "specs": [
         {
-          "label": "コンセプト",
-          "value": "甘く優しい毒の擬人化"
+          "label": "好きなもの",
+          "value": "食べること・ゲーム・ピンク"
         },
         {
-          "label": "テーマカラー",
-          "value": "黒×深紅"
+          "label": "誕生日",
+          "value": "11月11日"
         },
         {
           "label": "活動時間帯",
-          "value": "夜 22:00〜0:00 中心"
+          "value": "夜 23:00〜1:00 中心"
         }
       ],
       "youtube_id": "",
-      "other_url": "https://lit.link/en/midokulobha",
+      "other_url": "https://www.youtube.com/channel/UCp45rWiRwgYZJUR4bQO-Xgw",
+      "other_label": "YouTube",
+      "profile_url": "",
+      "birth_month": "11月",
+      "call_category": "ドリーマー"
+    },
+    {
+      "cast_id": 241,
+      "name": "玉木瑶",
+      "name_reading": "タマキヨウ",
+      "rank": "SILVER",
+      "catch": "今夜も開店、深夜のスナック。",
+      "intro": "スナックママ系VTuberとして、疲れた大人の止まり木になっています。お酒の話はもちろん、信念を曲げない芯の強さも魅力。\n深夜までたっぷり話せるSILVERクラスの実力派です。",
+      "x_url": "https://x.com/TamakiYouBS",
+      "portrait": "",
+      "portraits": [],
+      "icon": "assets/241_icon.webp",
+      "tags": [
+        "スナックママ",
+        "お酒",
+        "深夜組",
+        "大人の雑談"
+      ],
+      "specs": [
+        {
+          "label": "好きなもの",
+          "value": "お酒（レモンサワー）"
+        },
+        {
+          "label": "活動時間帯",
+          "value": "夜 21:00〜2:00 中心"
+        }
+      ],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "profile_url": "",
+      "birth_month": "3月",
+      "call_category": "ドリーマー"
+    },
+    {
+      "cast_id": 407,
+      "name": "蔦ヰ田リウ",
+      "name_reading": "ツタイダリウ",
+      "rank": "SILVER",
+      "catch": "幽体離脱から帰れなくなった魂、夢を探して旅の途中。",
+      "intro": "幽体離脱したまま戻れなくなった魂が、新しい身体と相棒のハムスターとともに「本当の夢」を探す旅をしている——そんな世界観のキャスト。\nASMRやゲーム配信もこなす、SILVERクラスの実力派です。",
+      "x_url": "https://x.com/riu_ttid",
+      "portrait": "",
+      "portraits": [],
+      "icon": "assets/407_icon.webp",
+      "tags": [
+        "世界観系",
+        "ASMR",
+        "ゲーム",
+        "深夜組"
+      ],
+      "specs": [
+        {
+          "label": "相棒",
+          "value": "ハムスター"
+        },
+        {
+          "label": "活動時間帯",
+          "value": "夜 22:00〜3:00 中心"
+        }
+      ],
+      "youtube_id": "",
+      "other_url": "https://lit.link/riu_ttid",
       "other_label": "lit.link",
       "profile_url": "",
-      "birth_month": "10月",
-      "call_category": "フレンドリー"
+      "birth_month": "1月",
+      "call_category": "ドリーマー"
     },
     {
       "cast_id": 239,
@@ -153,78 +221,6 @@ window.SHOWCASE = {
       "call_category": "ドリーマー"
     },
     {
-      "cast_id": 241,
-      "name": "玉木瑶",
-      "name_reading": "タマキヨウ",
-      "rank": "SILVER",
-      "catch": "今夜も開店、深夜のスナック。",
-      "intro": "スナックママ系VTuberとして、疲れた大人の止まり木になっています。お酒の話はもちろん、信念を曲げない芯の強さも魅力。\n深夜までたっぷり話せるSILVERクラスの実力派です。",
-      "x_url": "https://x.com/TamakiYouBS",
-      "portrait": "",
-      "portraits": [],
-      "icon": "assets/241_icon.webp",
-      "tags": [
-        "スナックママ",
-        "お酒",
-        "深夜組",
-        "大人の雑談"
-      ],
-      "specs": [
-        {
-          "label": "好きなもの",
-          "value": "お酒（レモンサワー）"
-        },
-        {
-          "label": "活動時間帯",
-          "value": "夜 21:00〜2:00 中心"
-        }
-      ],
-      "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
-      "profile_url": "",
-      "birth_month": "3月",
-      "call_category": "ドリーマー"
-    },
-    {
-      "cast_id": 296,
-      "name": "宇田わん",
-      "name_reading": "ウタワン",
-      "rank": "SILVER",
-      "catch": "こんわんわ〜！ ふわふわピンクの生涯VTuber。",
-      "intro": "ふわふわピンクのマルチーズ系バーチャル犬。「生涯VTuber・生涯いっしょ」を掲げて、みんなの日々のモチベーションになるべく活動中です。\nゲームも食べることも大好き。深夜のひとときに癒しをどうぞ。",
-      "x_url": "https://x.com/uta_wanUo_oU",
-      "portrait": "",
-      "portraits": [],
-      "icon": "assets/296_icon.webp",
-      "tags": [
-        "わんこ",
-        "ゲーム",
-        "食いしんぼう",
-        "深夜組"
-      ],
-      "specs": [
-        {
-          "label": "好きなもの",
-          "value": "食べること・ゲーム・ピンク"
-        },
-        {
-          "label": "誕生日",
-          "value": "11月11日"
-        },
-        {
-          "label": "活動時間帯",
-          "value": "夜 23:00〜1:00 中心"
-        }
-      ],
-      "youtube_id": "",
-      "other_url": "https://www.youtube.com/channel/UCp45rWiRwgYZJUR4bQO-Xgw",
-      "other_label": "YouTube",
-      "profile_url": "",
-      "birth_month": "11月",
-      "call_category": "ドリーマー"
-    },
-    {
       "cast_id": 392,
       "name": "こぐま もる",
       "name_reading": "コグマモル",
@@ -255,100 +251,140 @@ window.SHOWCASE = {
       "call_category": "ドリーマー"
     },
     {
-      "cast_id": 407,
-      "name": "蔦ヰ田リウ",
-      "name_reading": "ツタイダリウ",
+      "cast_id": 205,
+      "name": "三毒ローパ",
+      "name_reading": "ミドクローパ",
       "rank": "SILVER",
-      "catch": "幽体離脱から帰れなくなった魂、夢を探して旅の途中。",
-      "intro": "幽体離脱したまま戻れなくなった魂が、新しい身体と相棒のハムスターとともに「本当の夢」を探す旅をしている——そんな世界観のキャスト。\nASMRやゲーム配信もこなす、SILVERクラスの実力派です。",
-      "x_url": "https://x.com/riu_ttid",
+      "catch": "甘く優しい“毒”に、今夜も堕ちてみる？",
+      "intro": "仏教の三毒「貪」の化身を名乗る、人外お姉さんVSinger。人を甘やかすのが大好きで、甘さに堕落していく人間を眺めて微笑んでいます。\n優しい女王様に甘やかされたい夜に。",
+      "x_url": "https://x.com/MidokuLobha",
       "portrait": "",
       "portraits": [],
-      "icon": "assets/407_icon.webp",
+      "icon": "assets/205_icon.webp",
       "tags": [
-        "世界観系",
-        "ASMR",
-        "ゲーム",
-        "深夜組"
+        "人外お姉さん",
+        "甘やかし",
+        "歌",
+        "夜型"
       ],
       "specs": [
         {
-          "label": "相棒",
-          "value": "ハムスター"
+          "label": "コンセプト",
+          "value": "甘く優しい毒の擬人化"
+        },
+        {
+          "label": "テーマカラー",
+          "value": "黒×深紅"
         },
         {
           "label": "活動時間帯",
-          "value": "夜 22:00〜3:00 中心"
+          "value": "夜 22:00〜0:00 中心"
         }
       ],
       "youtube_id": "",
-      "other_url": "https://lit.link/riu_ttid",
+      "other_url": "https://lit.link/en/midokulobha",
       "other_label": "lit.link",
       "profile_url": "",
-      "birth_month": "1月",
-      "call_category": "ドリーマー"
+      "birth_month": "10月",
+      "call_category": "フレンドリー"
     },
     {
-      "cast_id": 154,
-      "name": "あまち",
-      "name_reading": "アマチ",
+      "cast_id": 388,
+      "name": "夢野 てう",
+      "name_reading": "Yumeno Teu",
       "rank": "BRONZE",
-      "catch": "唯一無二の声で語りかける、雑談大好きドリーマー。",
-      "intro": "「唯一無二の声」がじまんの雑談大好きキャスト。ツイキャスでの長い配信歴に裏打ちされたトーク力で、初めてでも会話が途切れません。\n夢はLive2Dのお披露目。応援したくなる成長物語の真っ只中です。",
-      "x_url": "https://x.com/pochakk666",
+      "catch": "蝶のように歌う、VSinger。",
+      "intro": "🦋を象徴に活動する歌姫。オリジナル曲「春の最果て」をサブスク配信中のVSingerで、歌への真っ直ぐな想いが持ち味です。\n夜の歌声に癒されたい人へ。",
+      "x_url": "https://x.com/yumeno_teu",
       "portrait": "",
       "portraits": [],
-      "icon": "assets/154_icon.webp",
+      "icon": "assets/388_icon.webp",
       "tags": [
-        "雑談",
-        "声フェチ歓迎",
-        "ツイキャス出身",
-        "昼活動"
+        "歌",
+        "VSinger",
+        "オリジナル曲",
+        "夜型"
       ],
       "specs": [
         {
           "label": "好きなもの",
-          "value": "おしゃべり"
-        },
-        {
-          "label": "夢",
-          "value": "Live2Dお披露目"
+          "value": "歌"
         },
         {
           "label": "活動時間帯",
-          "value": "昼 11:00〜19:00 中心"
+          "value": "夜 20:00〜0:00 中心"
         }
       ],
       "youtube_id": "",
-      "other_url": "https://twitcasting.tv/pochakk666",
-      "other_label": "ツイキャス",
+      "other_url": "",
+      "other_label": "",
       "profile_url": "",
-      "birth_month": "3月",
+      "birth_month": "8月",
       "call_category": "ドリーマー"
     },
     {
-      "cast_id": 188,
-      "name": "真白ひなた",
-      "name_reading": "マシロヒナタ",
+      "cast_id": 313,
+      "name": "黒柴えいら",
+      "name_reading": "クロシバエイラ",
       "rank": "BRONZE",
-      "catch": "夢を越えて、“日常”を一緒に刻む。",
-      "intro": "BackStage公式番組「BackStage FM」への出演経験もあるブロンズクラスのキャスト。\n肩の力を抜いた“日常”の会話を大切にするフレンドリータイプで、深夜にゆったり話したい人にぴったりです。",
-      "x_url": "https://x.com/hinata_bsc",
+      "catch": "中低音ボイスの黒柴が、夢の中で待ってる。",
+      "intro": "中低音ボイスが看板の黒柴系キャスト。相棒「茶豆」とともに「夢の中で生きるリアリスト」として、名作ゲームの世界観を語らせたら止まりません。\n深夜0時からの大人の時間にどうぞ。",
+      "x_url": "https://x.com/kuroshibaeila",
       "portrait": "",
       "portraits": [],
-      "icon": "assets/188_icon.webp",
+      "icon": "assets/313_icon.webp",
       "tags": [
-        "雑談",
-        "日常トーク",
-        "夜ふかし組"
+        "中低音ボイス",
+        "ゲーム",
+        "深夜組",
+        "黒柴"
       ],
       "specs": [
         {
+          "label": "好きなもの",
+          "value": "世界観の濃いゲーム"
+        },
+        {
           "label": "活動時間帯",
-          "value": "夜 21:00〜2:00 中心"
+          "value": "深夜 0:00〜4:00 中心"
         }
       ],
-      "youtube_id": "m-00kOuKKzw",
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "profile_url": "",
+      "birth_month": "11月",
+      "call_category": "ドリーマー"
+    },
+    {
+      "cast_id": 322,
+      "name": "如月シノ",
+      "name_reading": "キサラギシノ",
+      "rank": "BRONZE",
+      "catch": "和服の似合う挑戦者、EVOを制した男。",
+      "intro": "男性キャスト限定イベント「BackStage EVO」を制した実力派。和服の似合う落ち着いた佇まいと、「酒と肝臓は友達」と笑う気さくさを併せ持ちます。\n直近2ヶ月の通話時間はランク入りキャストで堂々の1位。",
+      "x_url": "https://x.com/Shino_K1219",
+      "portrait": "",
+      "portraits": [],
+      "icon": "assets/322_icon.webp",
+      "tags": [
+        "男性キャスト",
+        "和服",
+        "お酒",
+        "EVO優勝",
+        "夜型"
+      ],
+      "specs": [
+        {
+          "label": "好きなもの",
+          "value": "お酒"
+        },
+        {
+          "label": "活動時間帯",
+          "value": "夜 20:00〜2:00 中心"
+        }
+      ],
+      "youtube_id": "",
       "other_url": "",
       "other_label": "",
       "profile_url": "",
@@ -356,32 +392,37 @@ window.SHOWCASE = {
       "call_category": "フレンドリー"
     },
     {
-      "cast_id": 227,
-      "name": "琴葉",
-      "name_reading": "コトハ",
+      "cast_id": 501,
+      "name": "あまタクシー",
+      "name_reading": "AMATAXI",
       "rank": "BRONZE",
-      "catch": "昼下がりにほっとひと息、フレンドリーな聞き上手。",
-      "intro": "昼から夕方を中心に待機しているフレンドリータイプのキャスト。\n気負わず話せる空気感で、すきま時間の雑談相手にぴったりです。",
-      "x_url": "https://x.com/hazime0501",
+      "catch": "雨の日も、心の送迎いたします。",
+      "intro": "☔️🚕がトレードマークの男性キャスト。龍が如くやメタルギアなどストーリー重視のゲームと、演劇・舞台を愛する語り屋です。\nツイキャスやYouTubeの実況で鍛えたトークで、目的地までご案内します。",
+      "x_url": "https://x.com/amataxi4869",
       "portrait": "",
       "portraits": [],
-      "icon": "assets/227_icon.webp",
+      "icon": "assets/501_icon.webp",
       "tags": [
-        "雑談",
-        "昼活動",
-        "はじめてさん歓迎"
+        "男性キャスト",
+        "ゲーム実況",
+        "演劇好き",
+        "夜型"
       ],
       "specs": [
         {
+          "label": "好きなもの",
+          "value": "ストーリー重視のゲーム・舞台観劇"
+        },
+        {
           "label": "活動時間帯",
-          "value": "昼 12:00〜20:00 中心"
+          "value": "夜 18:00〜22:00 中心"
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "other_url": "https://www.youtube.com/@amataxi",
+      "other_label": "YouTube",
       "profile_url": "",
-      "birth_month": "3月",
+      "birth_month": "2月",
       "call_category": "フレンドリー"
     },
     {
@@ -424,6 +465,35 @@ window.SHOWCASE = {
       "call_category": ""
     },
     {
+      "cast_id": 188,
+      "name": "真白ひなた",
+      "name_reading": "マシロヒナタ",
+      "rank": "BRONZE",
+      "catch": "夢を越えて、“日常”を一緒に刻む。",
+      "intro": "BackStage公式番組「BackStage FM」への出演経験もあるブロンズクラスのキャスト。\n肩の力を抜いた“日常”の会話を大切にするフレンドリータイプで、深夜にゆったり話したい人にぴったりです。",
+      "x_url": "https://x.com/hinata_bsc",
+      "portrait": "",
+      "portraits": [],
+      "icon": "assets/188_icon.webp",
+      "tags": [
+        "雑談",
+        "日常トーク",
+        "夜ふかし組"
+      ],
+      "specs": [
+        {
+          "label": "活動時間帯",
+          "value": "夜 21:00〜2:00 中心"
+        }
+      ],
+      "youtube_id": "m-00kOuKKzw",
+      "other_url": "",
+      "other_label": "",
+      "profile_url": "",
+      "birth_month": "12月",
+      "call_category": "フレンドリー"
+    },
+    {
       "cast_id": 303,
       "name": "水野ゆか",
       "name_reading": "ミズノユカ",
@@ -454,37 +524,134 @@ window.SHOWCASE = {
       "call_category": "フレンドリー"
     },
     {
-      "cast_id": 313,
-      "name": "黒柴えいら",
-      "name_reading": "クロシバエイラ",
+      "cast_id": 154,
+      "name": "あまち",
+      "name_reading": "アマチ",
       "rank": "BRONZE",
-      "catch": "中低音ボイスの黒柴が、夢の中で待ってる。",
-      "intro": "中低音ボイスが看板の黒柴系キャスト。相棒「茶豆」とともに「夢の中で生きるリアリスト」として、名作ゲームの世界観を語らせたら止まりません。\n深夜0時からの大人の時間にどうぞ。",
-      "x_url": "https://x.com/kuroshibaeila",
+      "catch": "唯一無二の声で語りかける、雑談大好きドリーマー。",
+      "intro": "「唯一無二の声」がじまんの雑談大好きキャスト。ツイキャスでの長い配信歴に裏打ちされたトーク力で、初めてでも会話が途切れません。\n夢はLive2Dのお披露目。応援したくなる成長物語の真っ只中です。",
+      "x_url": "https://x.com/pochakk666",
       "portrait": "",
       "portraits": [],
-      "icon": "assets/313_icon.webp",
+      "icon": "assets/154_icon.webp",
       "tags": [
-        "中低音ボイス",
-        "ゲーム",
-        "深夜組",
-        "黒柴"
+        "雑談",
+        "声フェチ歓迎",
+        "ツイキャス出身",
+        "昼活動"
       ],
       "specs": [
         {
           "label": "好きなもの",
-          "value": "世界観の濃いゲーム"
+          "value": "おしゃべり"
+        },
+        {
+          "label": "夢",
+          "value": "Live2Dお披露目"
         },
         {
           "label": "活動時間帯",
-          "value": "深夜 0:00〜4:00 中心"
+          "value": "昼 11:00〜19:00 中心"
+        }
+      ],
+      "youtube_id": "",
+      "other_url": "https://twitcasting.tv/pochakk666",
+      "other_label": "ツイキャス",
+      "profile_url": "",
+      "birth_month": "3月",
+      "call_category": "ドリーマー"
+    },
+    {
+      "cast_id": 529,
+      "name": "赤絲 こゆび",
+      "name_reading": "Akaito Koyubi",
+      "rank": "BRONZE",
+      "catch": "君に「大丈夫」を届けに来た堕天使。",
+      "intro": "「君に『大丈夫』を届けに来た」がコンセプトの堕天使キャスト。雑談やASMR、配信中のイラスト制作など、夜から朝までそっと寄り添うスタイルが持ち味です。\n眠れない夜のお守りにどうぞ。",
+      "x_url": "https://x.com/_koito_IRIAM",
+      "portrait": "",
+      "portraits": [],
+      "icon": "assets/529_icon.webp",
+      "tags": [
+        "堕天使",
+        "ASMR",
+        "イラスト",
+        "深夜組"
+      ],
+      "specs": [
+        {
+          "label": "好きなもの",
+          "value": "食べ物の話・イラスト"
+        },
+        {
+          "label": "活動時間帯",
+          "value": "夜 18:00〜2:00 中心"
         }
       ],
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
       "profile_url": "",
-      "birth_month": "11月",
+      "birth_month": "3月",
+      "call_category": "ドリーマー"
+    },
+    {
+      "cast_id": 439,
+      "name": "はにゃの",
+      "name_reading": "メメンネハニャノ",
+      "rank": "BRONZE",
+      "catch": "ハラペコぬいぐるみ、きょうも何か食べてる。",
+      "intro": "くまのぬいぐるみ系VTuber。TikTokのネタ動画やライブ配信で見せる、ゆるくて食いしんぼうなキャラクターが持ち味です。",
+      "x_url": "https://x.com/hanyano21",
+      "portrait": "",
+      "portraits": [],
+      "icon": "assets/439_icon.webp",
+      "tags": [
+        "ぬいぐるみ",
+        "食いしんぼう",
+        "TikTok",
+        "昼活動"
+      ],
+      "specs": [
+        {
+          "label": "活動時間帯",
+          "value": "昼 14:00〜18:00 中心"
+        }
+      ],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "profile_url": "",
+      "birth_month": "2月",
+      "call_category": "フレンドリー"
+    },
+    {
+      "cast_id": 506,
+      "name": "ミラ・エトワール",
+      "name_reading": "Mira Etoile",
+      "rank": "BRONZE",
+      "catch": "星のように、そっと寄り添うドリーマー。",
+      "intro": "🪄💫🐳をまとう、やさしい雰囲気のキャスト。夕方から深夜まで長く待機しており、じっくり話したい夜の相手にぴったりです。",
+      "x_url": "https://x.com/mira_etoile_2",
+      "portrait": "",
+      "portraits": [],
+      "icon": "assets/506_icon.webp",
+      "tags": [
+        "癒し系",
+        "夜型",
+        "じっくり通話"
+      ],
+      "specs": [
+        {
+          "label": "活動時間帯",
+          "value": "夜 18:00〜2:00 中心"
+        }
+      ],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "profile_url": "",
+      "birth_month": "4月",
       "call_category": "ドリーマー"
     },
     {
@@ -519,176 +686,6 @@ window.SHOWCASE = {
       "other_label": "",
       "profile_url": "",
       "birth_month": "12月",
-      "call_category": "ドリーマー"
-    },
-    {
-      "cast_id": 322,
-      "name": "如月シノ",
-      "name_reading": "キサラギシノ",
-      "rank": "BRONZE",
-      "catch": "和服の似合う挑戦者、EVOを制した男。",
-      "intro": "男性キャスト限定イベント「BackStage EVO」を制した実力派。和服の似合う落ち着いた佇まいと、「酒と肝臓は友達」と笑う気さくさを併せ持ちます。\n直近2ヶ月の通話時間はランク入りキャストで堂々の1位。",
-      "x_url": "https://x.com/Shino_K1219",
-      "portrait": "",
-      "portraits": [],
-      "icon": "assets/322_icon.webp",
-      "tags": [
-        "男性キャスト",
-        "和服",
-        "お酒",
-        "EVO優勝",
-        "夜型"
-      ],
-      "specs": [
-        {
-          "label": "好きなもの",
-          "value": "お酒"
-        },
-        {
-          "label": "活動時間帯",
-          "value": "夜 20:00〜2:00 中心"
-        }
-      ],
-      "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
-      "profile_url": "",
-      "birth_month": "12月",
-      "call_category": "フレンドリー"
-    },
-    {
-      "cast_id": 328,
-      "name": "サヤ・グレース",
-      "name_reading": "サヤ・グレース",
-      "rank": "BRONZE",
-      "catch": "森の魔女の、音の魔法をあなたに。",
-      "intro": "薬師でヴァイオリニストという「森の魔女」。ゲームも演奏もこなし、オリジナル曲も手がけます。\nBackStageでは大会優勝経験もある実力派。昼下がりのやわらかな時間にどうぞ。",
-      "x_url": "https://x.com/SayaGrace38",
-      "portrait": "",
-      "portraits": [],
-      "icon": "assets/328_icon.webp",
-      "tags": [
-        "ヴァイオリン",
-        "演奏",
-        "ゲーム",
-        "森の魔女"
-      ],
-      "specs": [
-        {
-          "label": "好きなもの",
-          "value": "ゲーム・ヴァイオリン"
-        },
-        {
-          "label": "コンセプト",
-          "value": "森の奥に住む薬師"
-        },
-        {
-          "label": "活動時間帯",
-          "value": "昼 14:00〜16:00 中心"
-        }
-      ],
-      "youtube_id": "OrDMuMUgl-k",
-      "other_url": "https://lit.link/sayagrace38",
-      "other_label": "lit.link",
-      "profile_url": "",
-      "birth_month": "",
-      "call_category": "ドリーマー"
-    },
-    {
-      "cast_id": 364,
-      "name": "音無のあ",
-      "name_reading": "オトナシノア",
-      "rank": "BRONZE",
-      "catch": "月末には握手会。会いに行けるドキドキ系。",
-      "intro": "2025年9月デビューのドキドキ系キャスト。月1回の握手会やファンクラブなど、ファンとの距離の近さが持ち味です。\n深夜のささやかな時間に、そっと話しに来てください。",
-      "x_url": "https://x.com/Otonashi_Noa",
-      "portrait": "",
-      "portraits": [],
-      "icon": "assets/364_icon.webp",
-      "tags": [
-        "ドキドキ系",
-        "握手会",
-        "深夜組"
-      ],
-      "specs": [
-        {
-          "label": "活動時間帯",
-          "value": "夜 23:00〜1:00 中心"
-        }
-      ],
-      "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
-      "profile_url": "",
-      "birth_month": "10月",
-      "call_category": "ドキドキ"
-    },
-    {
-      "cast_id": 388,
-      "name": "夢野 てう",
-      "name_reading": "Yumeno Teu",
-      "rank": "BRONZE",
-      "catch": "蝶のように歌う、VSinger。",
-      "intro": "🦋を象徴に活動する歌姫。オリジナル曲「春の最果て」をサブスク配信中のVSingerで、歌への真っ直ぐな想いが持ち味です。\n夜の歌声に癒されたい人へ。",
-      "x_url": "https://x.com/yumeno_teu",
-      "portrait": "",
-      "portraits": [],
-      "icon": "assets/388_icon.webp",
-      "tags": [
-        "歌",
-        "VSinger",
-        "オリジナル曲",
-        "夜型"
-      ],
-      "specs": [
-        {
-          "label": "好きなもの",
-          "value": "歌"
-        },
-        {
-          "label": "活動時間帯",
-          "value": "夜 20:00〜0:00 中心"
-        }
-      ],
-      "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
-      "profile_url": "",
-      "birth_month": "8月",
-      "call_category": "ドリーマー"
-    },
-    {
-      "cast_id": 391,
-      "name": "小向なのか",
-      "name_reading": "コムカイナノカ",
-      "rank": "BRONZE",
-      "catch": "あなたの心の中の、気軽に話せる女の子。",
-      "intro": "雑談を軸に、歌枠リレーやラジオ企画にも顔を出すマルチなキャスト。「なんでもできる超かっこいい大人になる」ため勉強中の、等身大の魅力が持ち味です。",
-      "x_url": "https://x.com/komukai_nanoka",
-      "portrait": "",
-      "portraits": [],
-      "icon": "assets/391_icon.webp",
-      "tags": [
-        "雑談",
-        "歌",
-        "ラジオ",
-        "深夜組"
-      ],
-      "specs": [
-        {
-          "label": "好きなもの",
-          "value": "歌・おしゃべり"
-        },
-        {
-          "label": "活動時間帯",
-          "value": "夜 23:00〜1:00 中心"
-        }
-      ],
-      "youtube_id": "",
-      "other_url": "https://www.youtube.com/@komukai_nanoka",
-      "other_label": "YouTube",
-      "profile_url": "",
-      "birth_month": "2月",
       "call_category": "ドリーマー"
     },
     {
@@ -750,6 +747,35 @@ window.SHOWCASE = {
       "call_category": "フレンドリー"
     },
     {
+      "cast_id": 227,
+      "name": "琴葉",
+      "name_reading": "コトハ",
+      "rank": "BRONZE",
+      "catch": "昼下がりにほっとひと息、フレンドリーな聞き上手。",
+      "intro": "昼から夕方を中心に待機しているフレンドリータイプのキャスト。\n気負わず話せる空気感で、すきま時間の雑談相手にぴったりです。",
+      "x_url": "https://x.com/hazime0501",
+      "portrait": "",
+      "portraits": [],
+      "icon": "assets/227_icon.webp",
+      "tags": [
+        "雑談",
+        "昼活動",
+        "はじめてさん歓迎"
+      ],
+      "specs": [
+        {
+          "label": "活動時間帯",
+          "value": "昼 12:00〜20:00 中心"
+        }
+      ],
+      "youtube_id": "",
+      "other_url": "",
+      "other_label": "",
+      "profile_url": "",
+      "birth_month": "3月",
+      "call_category": "フレンドリー"
+    },
+    {
       "cast_id": 416,
       "name": "にこ",
       "name_reading": "ニコ",
@@ -768,36 +794,6 @@ window.SHOWCASE = {
         {
           "label": "活動時間帯",
           "value": "夜 19:00〜21:00 中心"
-        }
-      ],
-      "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
-      "profile_url": "",
-      "birth_month": "2月",
-      "call_category": "フレンドリー"
-    },
-    {
-      "cast_id": 439,
-      "name": "はにゃの",
-      "name_reading": "メメンネハニャノ",
-      "rank": "BRONZE",
-      "catch": "ハラペコぬいぐるみ、きょうも何か食べてる。",
-      "intro": "くまのぬいぐるみ系VTuber。TikTokのネタ動画やライブ配信で見せる、ゆるくて食いしんぼうなキャラクターが持ち味です。",
-      "x_url": "https://x.com/hanyano21",
-      "portrait": "",
-      "portraits": [],
-      "icon": "assets/439_icon.webp",
-      "tags": [
-        "ぬいぐるみ",
-        "食いしんぼう",
-        "TikTok",
-        "昼活動"
-      ],
-      "specs": [
-        {
-          "label": "活動時間帯",
-          "value": "昼 14:00〜18:00 中心"
         }
       ],
       "youtube_id": "",
@@ -842,100 +838,104 @@ window.SHOWCASE = {
       "call_category": "ドリーマー"
     },
     {
-      "cast_id": 501,
-      "name": "あまタクシー",
-      "name_reading": "AMATAXI",
+      "cast_id": 364,
+      "name": "音無のあ",
+      "name_reading": "オトナシノア",
       "rank": "BRONZE",
-      "catch": "雨の日も、心の送迎いたします。",
-      "intro": "☔️🚕がトレードマークの男性キャスト。龍が如くやメタルギアなどストーリー重視のゲームと、演劇・舞台を愛する語り屋です。\nツイキャスやYouTubeの実況で鍛えたトークで、目的地までご案内します。",
-      "x_url": "https://x.com/amataxi4869",
+      "catch": "月末には握手会。会いに行けるドキドキ系。",
+      "intro": "2025年9月デビューのドキドキ系キャスト。月1回の握手会やファンクラブなど、ファンとの距離の近さが持ち味です。\n深夜のささやかな時間に、そっと話しに来てください。",
+      "x_url": "https://x.com/Otonashi_Noa",
       "portrait": "",
       "portraits": [],
-      "icon": "assets/501_icon.webp",
+      "icon": "assets/364_icon.webp",
       "tags": [
-        "男性キャスト",
-        "ゲーム実況",
-        "演劇好き",
-        "夜型"
-      ],
-      "specs": [
-        {
-          "label": "好きなもの",
-          "value": "ストーリー重視のゲーム・舞台観劇"
-        },
-        {
-          "label": "活動時間帯",
-          "value": "夜 18:00〜22:00 中心"
-        }
-      ],
-      "youtube_id": "",
-      "other_url": "https://www.youtube.com/@amataxi",
-      "other_label": "YouTube",
-      "profile_url": "",
-      "birth_month": "2月",
-      "call_category": "フレンドリー"
-    },
-    {
-      "cast_id": 506,
-      "name": "ミラ・エトワール",
-      "name_reading": "Mira Etoile",
-      "rank": "BRONZE",
-      "catch": "星のように、そっと寄り添うドリーマー。",
-      "intro": "🪄💫🐳をまとう、やさしい雰囲気のキャスト。夕方から深夜まで長く待機しており、じっくり話したい夜の相手にぴったりです。",
-      "x_url": "https://x.com/mira_etoile_2",
-      "portrait": "",
-      "portraits": [],
-      "icon": "assets/506_icon.webp",
-      "tags": [
-        "癒し系",
-        "夜型",
-        "じっくり通話"
+        "ドキドキ系",
+        "握手会",
+        "深夜組"
       ],
       "specs": [
         {
           "label": "活動時間帯",
-          "value": "夜 18:00〜2:00 中心"
+          "value": "夜 23:00〜1:00 中心"
         }
       ],
       "youtube_id": "",
       "other_url": "",
       "other_label": "",
       "profile_url": "",
-      "birth_month": "4月",
-      "call_category": "ドリーマー"
+      "birth_month": "10月",
+      "call_category": "ドキドキ"
     },
     {
-      "cast_id": 529,
-      "name": "赤絲 こゆび",
-      "name_reading": "Akaito Koyubi",
+      "cast_id": 391,
+      "name": "小向なのか",
+      "name_reading": "コムカイナノカ",
       "rank": "BRONZE",
-      "catch": "君に「大丈夫」を届けに来た堕天使。",
-      "intro": "「君に『大丈夫』を届けに来た」がコンセプトの堕天使キャスト。雑談やASMR、配信中のイラスト制作など、夜から朝までそっと寄り添うスタイルが持ち味です。\n眠れない夜のお守りにどうぞ。",
-      "x_url": "https://x.com/_koito_IRIAM",
+      "catch": "あなたの心の中の、気軽に話せる女の子。",
+      "intro": "雑談を軸に、歌枠リレーやラジオ企画にも顔を出すマルチなキャスト。「なんでもできる超かっこいい大人になる」ため勉強中の、等身大の魅力が持ち味です。",
+      "x_url": "https://x.com/komukai_nanoka",
       "portrait": "",
       "portraits": [],
-      "icon": "assets/529_icon.webp",
+      "icon": "assets/391_icon.webp",
       "tags": [
-        "堕天使",
-        "ASMR",
-        "イラスト",
+        "雑談",
+        "歌",
+        "ラジオ",
         "深夜組"
       ],
       "specs": [
         {
           "label": "好きなもの",
-          "value": "食べ物の話・イラスト"
+          "value": "歌・おしゃべり"
         },
         {
           "label": "活動時間帯",
-          "value": "夜 18:00〜2:00 中心"
+          "value": "夜 23:00〜1:00 中心"
         }
       ],
       "youtube_id": "",
-      "other_url": "",
-      "other_label": "",
+      "other_url": "https://www.youtube.com/@komukai_nanoka",
+      "other_label": "YouTube",
       "profile_url": "",
-      "birth_month": "3月",
+      "birth_month": "2月",
+      "call_category": "ドリーマー"
+    },
+    {
+      "cast_id": 328,
+      "name": "サヤ・グレース",
+      "name_reading": "サヤ・グレース",
+      "rank": "BRONZE",
+      "catch": "森の魔女の、音の魔法をあなたに。",
+      "intro": "薬師でヴァイオリニストという「森の魔女」。ゲームも演奏もこなし、オリジナル曲も手がけます。\nBackStageでは大会優勝経験もある実力派。昼下がりのやわらかな時間にどうぞ。",
+      "x_url": "https://x.com/SayaGrace38",
+      "portrait": "",
+      "portraits": [],
+      "icon": "assets/328_icon.webp",
+      "tags": [
+        "ヴァイオリン",
+        "演奏",
+        "ゲーム",
+        "森の魔女"
+      ],
+      "specs": [
+        {
+          "label": "好きなもの",
+          "value": "ゲーム・ヴァイオリン"
+        },
+        {
+          "label": "コンセプト",
+          "value": "森の奥に住む薬師"
+        },
+        {
+          "label": "活動時間帯",
+          "value": "昼 14:00〜16:00 中心"
+        }
+      ],
+      "youtube_id": "OrDMuMUgl-k",
+      "other_url": "https://lit.link/sayagrace38",
+      "other_label": "lit.link",
+      "profile_url": "",
+      "birth_month": "",
       "call_category": "ドリーマー"
     }
   ]
